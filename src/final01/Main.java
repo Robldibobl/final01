@@ -16,17 +16,8 @@ public class Main {
      * @param args Commandline parameters
      */
     public static void main(String[] args) {
-        Game game = null;
+        Game game = new Game();
         boolean b = true;
-
-        try {
-            game = new Game(args[0]);
-        } catch (InputException | RuleException e) {
-            if (e.getMessage().equals("Error, invalid input in the text file! The program will now exit!")) {
-                b = false; //klappt nicht?
-            }
-            Terminal.printLine(e.getMessage());
-        }
 
         while (b == true) {
             String input = Terminal.readLine();
@@ -48,28 +39,28 @@ public class Main {
                     }
 
                     switch (inputArr[0]) {
-                        case "search":
-                            Terminal.printLine(game.search(param));
+                        case "start":
+                            Terminal.printLine(game.start(param));
                             break;
 
-                        case "route":
-                            Terminal.printLine(game.route(param));
+                        case "roll":
+                            Terminal.printLine(game.roll(param));
                             break;
 
-                        case "insert":
-                            Terminal.printLine(game.insert(param));
+                        case "rollx":
+                            Terminal.printLine(game.rollX(param));
                             break;
 
-                        case "info":
-                            Terminal.printLine(game.info(param));
+                        case "move":
+                            Terminal.printLine(game.move(param));
                             break;
 
-                        case "nodes":
-                            Terminal.printLine(game.nodes(param));
+                        case "print":
+                            Terminal.printLine(game.print(param));
                             break;
 
-                        case "vertices":
-                            Terminal.printLine(game.vertices(param));
+                        case "abort":
+                            game.abort(param);
                             break;
 
                         default:
