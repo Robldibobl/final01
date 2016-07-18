@@ -5,11 +5,11 @@ package final01;
  * @version 1.0
  */
 public class Game {
-    private Token token;
+    private Field field;
     private int currentPlayer;
 
     public Game() {
-        token = new Token();
+        field = new Field();
     }
 
     /*
@@ -34,6 +34,10 @@ public class Game {
     public void start(String[] param) {
         Check.checkAmount(param, x);
         Check.checkOptionals();
+
+        /*
+        falls x = 0, setStart();
+         */
 
     }
 
@@ -62,16 +66,16 @@ public class Game {
 
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
-                output += "" + token.getRed();
+                output += "" + field.getRed();
             }
             if (i == 1) {
-                output += "" + token.getBlue();
+                output += "" + field.getBlue();
             }
             if (i == 2) {
-                output += "" + token.getGreen();
+                output += "" + field.getGreen();
             }
             if (i == 3) {
-                output += "" + token.getYellow();
+                output += "" + field.getYellow();
             }
         }
 
