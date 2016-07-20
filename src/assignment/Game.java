@@ -1,4 +1,4 @@
-package final01;
+package assignment;
 
 /**
  * @author Robin Fritz
@@ -6,7 +6,7 @@ package final01;
  */
 public class Game {
     private Field field;
-    private int currentPlayer;
+    private Player currentPlayer;
 
     public Game() {
         field = new Field();
@@ -16,24 +16,21 @@ public class Game {
     optionale Spielregeln
      */
 
-    /*
-
-     */
     private void turn() {
-        if (currentPlayer == 1) {
-            currentPlayer = 2;
-        } else if (currentPlayer == 2) {
-            currentPlayer = 3;
-        } else if (currentPlayer == 3) {
-            currentPlayer = 4;
-        } else if (currentPlayer == 4) {
-            currentPlayer = 1;
+        if (currentPlayer.getColour().equals(Colour.RED)) {
+            currentPlayer.setColour(Colour.BLUE);
+        } else if (currentPlayer.getColour().equals(Colour.BLUE)) {
+            currentPlayer.setColour(Colour.GREEN);
+        } else if (currentPlayer.getColour().equals(Colour.GREEN)) {
+            currentPlayer.setColour(Colour.YELLOW);
+        } else if (currentPlayer.getColour().equals(Colour.YELLOW)) {
+            currentPlayer.setColour(Colour.RED);
         }
     }
 
     public void start(String[] param) {
-        Check.checkAmount(param, x);
-        Check.checkOptionals();
+        //Check.checkAmount(param, x);
+        //Check.checkOptionals();
 
         /*
         falls x = 0, setStart();
@@ -43,12 +40,13 @@ public class Game {
 
     public void roll(String[] param) throws InputException {
         Check.checkAmount(param, 1);
+        Check.checkRoll(Integer.parseInt(param[0]));
     }
 
     public void rollX(String[] param) throws InputException {
         Check.checkAmount(param, 0);
 
-        return roll(random);
+        //return roll(random);
     }
 
     public void move(String[] param) throws InputException {
@@ -60,6 +58,13 @@ public class Game {
 
     }
 
+    /**
+     * Prints out the current state of the game and the colour of next turn's player.
+     *
+     * @param param String array with parameters
+     * @return Returns the current state of the game
+     * @throws InputException For input format type errors
+     */
     public String print(String[] param) throws InputException {
         Check.checkAmount(param, 0);
         String output = new String();
@@ -79,19 +84,7 @@ public class Game {
             }
         }
 
-        output = output + "\n" + getCurrentPlayer();
+        output = output + "\n" + currentPlayer.getColour().toString().toLowerCase();
         return output;
-    }
-
-    public void abort(String[] param) throws InputException {
-        Check.checkAmount(param, 0);
-    }
-
-    public String getCurrentPlayer() {
-        for () {
-
-        }
-
-        return currentPlayer;
     }
 }

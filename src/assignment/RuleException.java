@@ -1,4 +1,4 @@
-package final01;
+package assignment;
 
 /**
  * @author Robin Fritz

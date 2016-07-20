@@ -1,4 +1,4 @@
-package final01;
+package assignment;
 
 /**
  * @author Robin Fritz
@@ -47,17 +47,17 @@ public class Field {
         char[] temp;
 
         for (String val : startRed) {
-            if (val.matches("red")) {
+            if (val.equals("red")) {
                 output += "" + "SR" + ",";
             }
         }
         for (int i = 0; i < 40; i++) {
-            if (field[i].matches("red")) {
+            if (field[i].equals("red")) {
                 output += "" + field[i].indexOf("red") + ",";
             }
         }
         for (int i = 0; i < 4; i++) {
-            if (destRed[i].matches("red")) {
+            if (destRed[i].equals("red")) {
                 temp = Character.toChars(65 + i);
 
                 output += "" + temp + "R" + ",";
@@ -74,17 +74,17 @@ public class Field {
         char[] temp;
 
         for (String val : startBlue) {
-            if (val.matches("blue")) {
+            if (val.equals("blue")) {
                 output += "" + "SB" + ",";
             }
         }
         for (int i = 0; i < 40; i++) {
-            if (field[i].matches("blue")) {
+            if (field[i].equals("blue")) {
                 output += "" + field[i].indexOf("blue") + ",";
             }
         }
         for (int i = 0; i < 4; i++) {
-            if (destBlue[i].matches("blue")) {
+            if (destBlue[i].equals("blue")) {
                 temp = Character.toChars(65 + i);
 
                 output += "" + temp + "B" + ",";
@@ -101,17 +101,17 @@ public class Field {
         char[] temp;
 
         for (String val : startGreen) {
-            if (val.matches("green")) {
+            if (val.equals("green")) {
                 output += "" + "SG" + ",";
             }
         }
         for (int i = 0; i < 40; i++) {
-            if (field[i].matches("green")) {
+            if (field[i].equals("green")) {
                 output += "" + field[i].indexOf("green") + ",";
             }
         }
         for (int i = 0; i < 4; i++) {
-            if (destGreen[i].matches("green")) {
+            if (destGreen[i].equals("green")) {
                 temp = Character.toChars(65 + i);
 
                 output += "" + temp + "G" + ",";
@@ -128,17 +128,17 @@ public class Field {
         char[] temp;
 
         for (String val : startYellow) {
-            if (val.matches("yellow")) {
+            if (val.equals("yellow")) {
                 output += "" + "SY" + ",";
             }
         }
         for (int i = 0; i < 40; i++) {
-            if (field[i].matches("yellow")) {
+            if (field[i].equals("yellow")) {
                 output += "" + field[i].indexOf("yellow") + ",";
             }
         }
         for (int i = 0; i < 4; i++) {
-            if (destYellow[i].matches("yellow")) {
+            if (destYellow[i].equals("yellow")) {
                 temp = Character.toChars(65 + i);
 
                 output += "" + temp + "Y" + ",";

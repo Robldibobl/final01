@@ -1,4 +1,4 @@
-package final01;
+package assignment;
 
 /**
  * @author Robin Fritz
@@ -28,6 +28,18 @@ public class Check {
     public static void checkAmount(String[] param, int n) throws InputException {
         if (param.length != n) {
             throw new InputException("Error, wrong input format!");
+        }
+    }
+
+    /**
+     * Checks if rolled number is from 1 to 6.
+     *
+     * @param input String array with parameters
+     * @throws InputException For input format type errors
+     */
+    public static void checkRoll(int input) throws InputException {
+        if (input < 1 || input > 6) {
+            throw new InputException("Error, rolled number has to be from 1 to 6!");
         }
     }
 
