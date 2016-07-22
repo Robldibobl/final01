@@ -9,6 +9,8 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Main {
+    private static boolean run = true;
+    private static boolean active = false;
 
     /**
      * Main method; splits input into commands and parameters.
@@ -17,28 +19,22 @@ public class Main {
      */
     public static void main(String[] args) {
         Game game;
-        boolean run = true;
-        boolean active = false;
 
-        while (run == true) {
+        while (run) {
             try {
                 String input = Terminal.readLine();
                 String[] optionals = input.split(" ");
 
                 if (optionals[0].equals("start")) {
-                    /*
-                    Rest an start weitergeben
-                     */
-
-                    active = true;
-                    Terminal.printLine("OK");
                     game = new Game();
+                    active = true;
+                    Terminal.printLine(game.start(optionals));
 
-                    while (active == true) {
+                    while (active) {
                         String[] inputArr = input.split(" ");
                         String[] param = new String[0];
 
-                        if (inputArr.length > 2) {
+                        if (inputArr.length > 2) { ///
                             throw new InputException("Error, wrong input format!");
                         }
 
@@ -79,18 +75,18 @@ public class Main {
                                 throw new InputException("Error, unknown command!");
                         }
                     }
-                } else if (input.equals("start")) {
+                } else if (input.equals("quit")) {
                     run = false;
                 } else {
                     throw new InputException("Error, unknown command!");
                 }
-            } catch (InputException | RuleException | IOException e) {
+            } catch (InputException e) { //| RuleException | IOException
                 Terminal.printLine(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 Terminal.printError("Array Index out of Bounds Exception!");
-            } catch (NullPointerException e) {
+            } /* catch (NullPointerException e) {
                 Terminal.printError("Nullpointer Exception");
-            }
+            } */
         }
     }
 }

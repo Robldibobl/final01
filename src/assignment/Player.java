@@ -5,12 +5,17 @@ package assignment;
  * @version 1.0
  */
 public class Player {
+    private Token token;
     private Colour colour;
 
     /**
      * Constructor of the class Player.
      */
     public Player() {
+    }
+
+    public Player(Token token) {
+        this.token = token;
     }
 
     /**

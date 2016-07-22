@@ -5,11 +5,20 @@ package assignment;
  * @version 1.0
  */
 public class Game {
+    private static int currentRoll;
     private Field field;
     private Player currentPlayer;
+    private boolean backward = false;
+    private boolean barrier = false;
+    private boolean nojump = false;
+    private boolean triply = false;
 
+    /**
+     * Constructor of the class Game.
+     */
     public Game() {
         field = new Field();
+        currentPlayer = new Player();
     }
 
     /*
@@ -28,7 +37,71 @@ public class Game {
         }
     }
 
-    public void start(String[] param) {
+    public String start(String[] optionals) throws InputException {
+        String[] positions = new String[4];
+        currentPlayer.setColour(Colour.RED);
+        field.setStart();
+
+        if (optionals.length > 1) {
+            for (int i = 0; i < optionals.length; i++) {
+                if (optionals[i].equals(Gamemodes.BACKWARD)) {
+                    backward = true;
+                }
+                if (optionals[i].equals(Gamemodes.BARRIER)) {
+                    barrier = true;
+                }
+                if (optionals[i].equals(Gamemodes.NOJUMP)) {
+                    nojump = true;
+                }
+                if (optionals[i].equals(Gamemodes.TRIPLY)) {
+                    triply = true;
+                }
+                if (optionals[i].matches(",") && !optionals[i].equals(optionals[optionals.length - 1])) {
+                    throw new InputException("Error, please comply by the input format! If you wish to use "
+                            + "optional rules or positions, please use this input format: <rules> <positions>");
+                }
+                if (optionals[optionals.length - 1].matches(",")) {
+                    positions = optionals[optionals.length - 1].split(";");
+                }
+            }
+        }
+
+        String[] posRed = positions[0].split(",");
+        String[] posBlue = positions[1].split(",");
+        String[] posGreen = positions[2].split(",");
+        String[] posYellow = positions[3].split(",");
+
+        //Überprüfung, ob der kack String valid ist
+
+        for (int i = 0; i < 4; i++) {
+            if (posRed[i].equals("SR")) {
+                for (int j = 0; j < 4; j++) {
+                    if (startRed[j].getColour().equals(Colour.EMPTY)) {
+
+                    }
+                }
+            }
+            for (int k = 0; k < 40; k++) {
+                if (Integer.parseInt(posRed[i]) == k) {
+                    board[k].setColour(Colour.RED);
+                }
+            }
+            if (posRed[i].equals("AR") || posRed[i].equals("BR") || posRed[i].equals("CR") || posRed[i].equals("DR")) {
+
+            }
+
+            /*
+            und so weiter für alle drei anderen Farben.
+             */
+
+        }
+
+        if (field[i + currentRoll].getColour().equals(Colour.EMPTY)) {
+            field[i + currentRoll].setColour(field[i].getColour());
+            field[i].setColour(Colour.EMPTY);
+        }
+
+
         //Check.checkAmount(param, x);
         //Check.checkOptionals();
 
@@ -36,26 +109,52 @@ public class Game {
         falls x = 0, setStart();
          */
 
+        return "OK";
     }
 
-    public void roll(String[] param) throws InputException {
+    public String roll(String[] param) throws InputException {
         Check.checkAmount(param, 1);
         Check.checkRoll(Integer.parseInt(param[0]));
+
+        currentRoll = Integer.parseInt(param[0]);
+
+        /*
+        Check alle möglichen Spielzüge; wenn 0, dann turn(); + return currentPlayer;
+        sonst alle möglichen Züge ausgeben
+         */
+        return "";
     }
 
-    public void rollX(String[] param) throws InputException {
+    /**
+     * Rolls a random number between 1 and 6 and prints out all possible turns.
+     *
+     * @param param String array with parameters
+     * @return Returns the roled number
+     * @throws InputException For input format type errors
+     */
+    public String rollX(String[] param) throws InputException {
         Check.checkAmount(param, 0);
+        String[] result = new String[1];
 
-        //return roll(random);
+        currentRoll = 1 + (int) (Math.random() * ((6 - 1) + 1));
+
+        result[0] = "" + currentRoll;
+
+        return roll(result);
     }
 
-    public void move(String[] param) throws InputException {
+    public String move(String[] param) throws InputException {
         Check.checkAmount(param, 2);
         Check.checkInteger(Integer.parseInt(param[0]));
         Check.checkInteger(Integer.parseInt(param[1]));
 
+        if (currentRoll != 6) {
+            turn();
+        }
+
         //in Check nur Spielfeld einbezogen, Zielfelder wie lösen?
 
+        return currentPlayer.getColour().toString().toLowerCase();
     }
 
     /**
@@ -67,24 +166,7 @@ public class Game {
      */
     public String print(String[] param) throws InputException {
         Check.checkAmount(param, 0);
-        String output = new String();
 
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                output += "" + field.getRed();
-            }
-            if (i == 1) {
-                output += "" + field.getBlue();
-            }
-            if (i == 2) {
-                output += "" + field.getGreen();
-            }
-            if (i == 3) {
-                output += "" + field.getYellow();
-            }
-        }
-
-        output = output + "\n" + currentPlayer.getColour().toString().toLowerCase();
-        return output;
+        return field.getPrint() + "\n" + currentPlayer.getColour().toString().toLowerCase();
     }
 }
