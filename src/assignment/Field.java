@@ -22,6 +22,7 @@ public class Field {
     private Dest yellow;
     private Token token;
     private String[] abcd;
+    private String[] colours;
 
     /**
      * Constructor of the class Field.
@@ -44,6 +45,8 @@ public class Field {
         fillBoard();
         abcd = new String[4];
         fillAbcd();
+        colours = new String[4];
+        fillColours();
     }
 
     private void fillStart() {
@@ -71,6 +74,13 @@ public class Field {
         abcd[1] = "B";
         abcd[2] = "C";
         abcd[3] = "D";
+    }
+
+    private void fillColours() {
+        colours[0] = "R";
+        colours[1] = "B";
+        colours[2] = "G";
+        colours[3] = "Y";
     }
 
     /**
@@ -208,58 +218,63 @@ public class Field {
         return output;
     }
 
+    /**
+     * Sets positions that are input with a start command.
+     *
+     * @param positions String array with parameters
+     * @throws InputException For input format type errors
+     */
     public void setPositions(String[] positions) throws InputException {
         String[] pos = new String[4];
-        char[] temp;
 
         startRed.setStart(0);
         startBlue.setStart(0);
         startGreen.setStart(0);
         startYellow.setStart(0);
 
-        //try {
-        for (int i = 0; i < 4; i++) {
-            pos = positions[i].split(",");
+        try {
+            for (int i = 0; i < 4; i++) {
+                pos = positions[i].split(",");
 
-            for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 4; j++) {
 
-            }
+                    if (pos[j].equals("S" + colours[i])) {
+                        startList.get(i).setStart(startList.get(i).getStart() + 1);
 
+                    } else if (pos[j].contains(colours[i])) {
 
-            for (int j = 0; j < 4; j++) {
+                        for (int k = 0; k < 4; k++) {
+                            if (pos[j].equals(abcd[k] + colours[i])) {
+                                if (destList.get(i).getDestination()[k].getColour().equals(Colour.EMPTY)) {
+                                    destList.get(i).setDestinationColour(destList.get(i).getDestination(), k, destList
+                                            .get(i).getColour());
+                                } else {
+                                    throw new InputException("Error, invalid input! Please do not place multiple"
+                                            + " tokens in the same place on the field!");
+                                }
+                            }
+                        }
+                    } else {
+                        for (int l = 0; l < 4; l++) {
+                            if (!pos[j].contains(abcd[l]) && !pos[j].contains(colours[l])) {
+                                Check.checkInteger(Integer.parseInt(pos[j]));
 
-                if (pos[j].equals("SR")) {
-                    startRed.setStart(startRed.getStart() + 1);
-                } else if (pos[j].equals("AR")) {
-                    red.setDestinationColour(red.getDestination(), 0, Colour.RED);
-                } else if (pos[j].equals("BR")) {
-                    red.setDestinationColour(red.getDestination(), 1, Colour.RED);
-                } else if (pos[j].equals("CR")) {
-                    red.setDestinationColour(red.getDestination(), 2, Colour.RED);
-                } else if (pos[j].equals("DR")) {
-                    red.setDestinationColour(red.getDestination(), 3, Colour.RED);
-                } else {
-                    if (Check.isInteger(Integer.parseInt(pos[j]))) {
-                        if (Integer.parseInt(pos[j]) >= 0 || Integer.parseInt(pos[j]) < 40) {
-                            board[Integer.parseInt(pos[j])].setColour(Colour.RED);
+                                if (board[Integer.parseInt(pos[j])].getColour().equals(Colour.EMPTY)) {
+                                    board[Integer.parseInt(pos[j])].setColour(startList.get(i).getColour());
+                                    break;
+                                } else {
+                                    throw new InputException("Error, invalid input! Please do not place multiple"
+                                            + " tokens in the same place on the field!");
+                                }
+                            }
                         }
                     }
                 }
-
             }
+        } catch (NumberFormatException e) {
+            throw new InputException("Error, wrong input format!");
         }
-        /*
-        temp = Character.toChars(65 + k);
-        if (pos[j].equals(temp + "R")) { // Exception hier
-            red[k].setColour(Colour.RED);
-        }
-        */
-
-        //} catch (NumberFormatException e) {
-        //    throw new InputException("Error, wrong input format abc!");
-        //}
     }
-
 
     /**
      * Collects all player tokens' positions and returns them.
@@ -324,12 +339,8 @@ public class Field {
             }
         }
 
-        System.out.println(output[0]);
-        System.out.println(output[1]);
-        System.out.println(output[2]);
-        System.out.println(output[3]);
         output[0] = output[0].substring(0, output[0].lastIndexOf(","));
-        output[1] = output[1].substring(0, output[1].lastIndexOf(",")); // StringIndexOutOfBounds ..?????
+        output[1] = output[1].substring(0, output[1].lastIndexOf(","));
         output[2] = output[2].substring(0, output[2].lastIndexOf(","));
         output[3] = output[3].substring(0, output[3].lastIndexOf(","));
 

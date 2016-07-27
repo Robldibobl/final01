@@ -25,26 +25,25 @@ public class Main {
 
                 if (optionals[0].equals("start")) {
                     game = new Game();
+
+                    for (String val : optionals) {
+                        Check.checkString(val);
+                    }
+
                     Terminal.printLine(game.start(optionals));
                     active = true;
 
                     while (active) {
                         String command = Terminal.readLine();
                         String[] inputArr = command.split(" ");
-                        String[] param = new String[0];
+                        String[] param = new String[inputArr.length - 1];
+                        System.arraycopy(inputArr, 1, param, 0, inputArr.length - 1);
 
-                        /*
-                        if (inputArr.length > 2) { ///
-                            throw new InputException("Error, wrong input format!");
-                        }
-
-                        if (inputArr.length == 2) {
-                            if (inputArr[1].charAt(inputArr[1].length() - 1) == ';') {
-                                throw new InputException("Error, wrong input format!");
+                        for (String val : param) {
+                            if (param.length >= 1) {
+                                Check.isInteger(Integer.parseInt(val));
                             }
-                            param = inputArr[1].split(";");
                         }
-                        */
 
                         switch (inputArr[0]) {
                             case "roll":
@@ -81,7 +80,7 @@ public class Main {
                 } else {
                     throw new InputException("Error, unknown command!1");
                 }
-            } catch (InputException | RuleException e) { //| IOException
+            } catch (InputException | RuleException e) {
                 Terminal.printLine(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 Terminal.printError("Array Index out of Bounds Exception!");

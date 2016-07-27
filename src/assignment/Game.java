@@ -38,6 +38,13 @@ public class Game {
         }
     }
 
+    /**
+     * Starts a game and sets booleans for different game modes. Also sets positions of tokens, if input.
+     *
+     * @param optionals String array with parameters
+     * @return Returns OK, if no exception thrown
+     * @throws InputException For input format type errors
+     */
     public String start(String[] optionals) throws InputException {
         String[] positions = new String[4];
 
@@ -71,9 +78,8 @@ public class Game {
                 Überprüfung,
                  */
             }
-            for (int i = 0; i < optionals.length; i++) {
-
-                if (optionals[i].contains(",") && !optionals[i].equals(optionals[optionals.length - 1])) {
+            for (String val : optionals) {
+                if (val.contains(",") && !val.equals(optionals[optionals.length - 1])) {
                     throw new InputException("Error, please comply by the input format! If you wish to use "
                             + "optional rules or positions, please use this input format: <rules> <positions>");
                 } else {
