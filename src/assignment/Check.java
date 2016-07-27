@@ -14,7 +14,15 @@ public class Check {
      */
     public static void checkInteger(int input) throws InputException {
         if (input < 0 || input > 40) {
-            throw new InputException("Error, please choose a number as distance!"); //XXXXXXXXXXXX
+            throw new InputException("Error, please choose a board position!"); //XXXXXXXXXXXX
+        }
+    }
+
+    public static boolean isInteger(int input) {
+        if (input < 0 || input > 40) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -40,6 +48,14 @@ public class Check {
     public static void checkRoll(int input) throws InputException {
         if (input < 1 || input > 6) {
             throw new InputException("Error, rolled number has to be from 1 to 6!");
+        }
+    }
+
+    public static boolean checkTurn(int start) {
+        if (start == 4) {
+            return false;
+        } else {
+            return true;
         }
     }
 

@@ -2,8 +2,6 @@ package assignment;
 
 import edu.kit.informatik.Terminal;
 
-import java.io.IOException;
-
 /**
  * @author Robin Fritz
  * @version 1.0
@@ -27,13 +25,15 @@ public class Main {
 
                 if (optionals[0].equals("start")) {
                     game = new Game();
-                    active = true;
                     Terminal.printLine(game.start(optionals));
+                    active = true;
 
                     while (active) {
-                        String[] inputArr = input.split(" ");
+                        String command = Terminal.readLine();
+                        String[] inputArr = command.split(" ");
                         String[] param = new String[0];
 
+                        /*
                         if (inputArr.length > 2) { ///
                             throw new InputException("Error, wrong input format!");
                         }
@@ -44,6 +44,7 @@ public class Main {
                             }
                             param = inputArr[1].split(";");
                         }
+                        */
 
                         switch (inputArr[0]) {
                             case "roll":
@@ -78,9 +79,9 @@ public class Main {
                 } else if (input.equals("quit")) {
                     run = false;
                 } else {
-                    throw new InputException("Error, unknown command!");
+                    throw new InputException("Error, unknown command!1");
                 }
-            } catch (InputException e) { //| RuleException | IOException
+            } catch (InputException | RuleException e) { //| IOException
                 Terminal.printLine(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 Terminal.printError("Array Index out of Bounds Exception!");
