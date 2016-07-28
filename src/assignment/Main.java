@@ -21,6 +21,9 @@ public class Main {
         while (run) {
             try {
                 String input = Terminal.readLine();
+                if (input.charAt(input.length() - 1) == ' ') {
+                    throw new InputException("Error, wrong input format!");
+                }
                 String[] optionals = input.split(" ");
 
                 if (optionals[0].equals("start")) {
@@ -38,12 +41,6 @@ public class Main {
                         String[] inputArr = command.split(" ");
                         String[] param = new String[inputArr.length - 1];
                         System.arraycopy(inputArr, 1, param, 0, inputArr.length - 1);
-
-                        for (String val : param) {
-                            if (param.length >= 1) {
-                                Check.isInteger(Integer.parseInt(val));
-                            }
-                        }
 
                         switch (inputArr[0]) {
                             case "roll":

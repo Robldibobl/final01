@@ -12,20 +12,39 @@ public class Check {
     /**
      * Checks if input is an integer.
      *
-     * @param input Input from terminal
+     * @param input Input
      * @throws InputException For input format type errors
      */
     public static void checkInteger(int input) throws InputException {
-        if (input < 0 || input > 40) {
+        if (input < 0 || input >= 40) {
             throw new InputException("Error, please choose a board position!"); //XXXXXXXXXXXX
         }
     }
 
+    /**
+     * Checks if input is an integer.
+     *
+     * @param input Input
+     * @return Returns true or false
+     * @throws InputException For input format type errors
+     */
     public static boolean isInteger(int input) throws InputException {
-        if (input < 0 || input > 6) {
-            throw new InputException("Error, please choose a number from 1 to 6!");
+        if (input < 0 || input >= 40) {
+            throw new InputException("Error, please choose a number between 1 and 6!");
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Checks if rolled number is from 1 to 6.
+     *
+     * @param input String array with parameters
+     * @throws InputException For input format type errors
+     */
+    public static void checkRoll(int input) throws InputException {
+        if (input < 1 || input > 6) {
+            throw new InputException("Error, rolled number has to be between 1 and 6!");
         }
     }
 
@@ -39,18 +58,6 @@ public class Check {
     public static void checkAmount(String[] param, int n) throws InputException {
         if (param.length != n) {
             throw new InputException("Error, wrong input format!");
-        }
-    }
-
-    /**
-     * Checks if rolled number is from 1 to 6.
-     *
-     * @param input String array with parameters
-     * @throws InputException For input format type errors
-     */
-    public static void checkRoll(int input) throws InputException {
-        if (input < 1 || input > 6) {
-            throw new InputException("Error, rolled number has to be from 1 to 6!");
         }
     }
 
@@ -82,10 +89,14 @@ public class Check {
         }
 
         if (temp.equals(input)) {
-            temp = temp.replaceAll("\\W", "");
+            if (!input.contains("S")) {
+                temp = temp.replaceAll("\\W", "");
 
-            if (!temp.equals(input)) {
-                throw new InputException("Error, game mode names only contain letters!");
+                if (!temp.equals(input)) {
+                    throw new InputException("Error, game mode names only contain letters!");
+                } else {
+                    return true;
+                }
             } else {
                 return true;
             }
@@ -93,6 +104,48 @@ public class Check {
             throw new InputException("Error, wrong input format!");
         }
 
+        return true;
+    }
+
+    /**
+     * Checks the order and validity of the positions string.
+     *
+     * @param pos    String array with positions for each colour
+     * @param colour Colour for respective positions
+     * @return Returns true or throws exceptions
+     * @throws InputException For input format type errors
+     */
+    public static boolean checkOrder(String[] pos, char colour) throws InputException {
+        int[] test = new int[4];
+
+        for (int i = 0; i < 4; i++) {
+            String v = pos[i];
+            try {
+                isInteger(Integer.parseInt(v));
+                if (Integer.parseInt(v) < 0 || Integer.parseInt(v) > 39) {
+                    throw new InputException("Error, wrong input format!");
+                }
+                test[i] = Integer.parseInt(v);
+            } catch (NumberFormatException e) {
+                if (v.length() != 2 || !("ABCDS").contains(("" + v.charAt(0))) || v.charAt(1) != colour) {
+                    throw new InputException("Error, wrong input format!");
+                }
+
+                test[i] = v.charAt(0);
+                if (v.charAt(0) == 'S') {
+                    test[i] = -1;
+                }
+            }
+        }
+
+        for (int i = 1; i < 4; i++) {
+            if (test[i] < test[i - 1]) {
+                throw new InputException("Error, wrong input format!");
+            }
+            if (test[i] == test[i - 1] && test[i] != -1) {
+                throw new InputException("Error, wrong input format!");
+            }
+        }
         return true;
     }
 }

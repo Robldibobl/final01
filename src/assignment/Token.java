@@ -6,12 +6,13 @@ package assignment;
  */
 public class Token {
     private Colour colour;
-
+    private boolean barrier;
     /**
      * Constructor of the Token class.
      */
     public Token() {
         this.colour = Colour.EMPTY;
+        barrier = false;
     }
 
     /**

@@ -147,6 +147,10 @@ public class Field {
         board[i].setColour(Colour.EMPTY);
     }
 
+    public void moveOut(Token[] start, int i) {
+
+    }
+
     /**
      * Sets the standard positions at game start.
      */
@@ -225,7 +229,7 @@ public class Field {
      * @throws InputException For input format type errors
      */
     public void setPositions(String[] positions) throws InputException {
-        String[] pos = new String[4];
+        String[] pos;
 
         startRed.setStart(0);
         startBlue.setStart(0);
@@ -235,6 +239,10 @@ public class Field {
         try {
             for (int i = 0; i < 4; i++) {
                 pos = positions[i].split(",");
+                char colour = colours[i].charAt(0);
+                Check.checkOrder(pos, colour);
+
+                // Überprüfung, ob Strings in richtiger Reihenfolge
 
                 for (int j = 0; j < 4; j++) {
 
@@ -255,6 +263,7 @@ public class Field {
                             }
                         }
                     } else {
+
                         for (int l = 0; l < 4; l++) {
                             if (!pos[j].contains(abcd[l]) && !pos[j].contains(colours[l])) {
                                 Check.checkInteger(Integer.parseInt(pos[j]));
@@ -359,45 +368,5 @@ public class Field {
      */
     public Token[] getBoard() {
         return board;
-    }
-
-    public List<Start> getStartList() {
-        return startList;
-    }
-
-    /**
-     * Getter for the red starting area.
-     *
-     * @return Returns red starting area
-     */
-    public Start getStartRed() {
-        return startRed;
-    }
-
-    /**
-     * Getter for the blue starting area.
-     *
-     * @return Returns blue starting area
-     */
-    public Start getStartBlue() {
-        return startBlue;
-    }
-
-    /**
-     * Getter for the green starting area.
-     *
-     * @return Returns green starting area
-     */
-    public Start getStartGreen() {
-        return startGreen;
-    }
-
-    /**
-     * Getter for the yellow starting area.
-     *
-     * @return Returns yellow starting area
-     */
-    public Start getStartYellow() {
-        return startYellow;
     }
 }
