@@ -1,5 +1,8 @@
 package assignment;
 
+import jdk.internal.util.xml.impl.Input;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+
 /**
  * @author Robin Fritz
  * @version 1.0
@@ -10,6 +13,7 @@ public class Game {
     private Field field;
     private Player currentPlayer;
     private String current;
+    private String rolls;
     private boolean backward = false;
     private boolean barrier = false;
     private boolean nojump = false;
@@ -127,7 +131,8 @@ public class Game {
                     return current;
                 }
             } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
-                return field.possMoves(currentPlayer.getColour()) + "\n" + current;
+                rolls = field.possMoves(currentPlayer.getColour(), barrier);
+                return rolls + "\n" + current;
             }
         } else {
             if (field.compareStart(currentPlayer.getColour()).getStart() > 0) { // falls 6 und noch Tokens in start,
@@ -211,10 +216,32 @@ public class Game {
         }
 
         Check.checkAmount(param, 2);
-        Check.checkInteger(Integer.parseInt(param[0]));
-        Check.checkInteger(Integer.parseInt(param[1]));
+        Check.checkInteger(param[0]);
+        Check.checkInteger(param[1]);
+        String[] possibilities;
         String output;
 
+        possibilities = rolls.split("\\s");
+
+        for (int i = 0; i < possibilities.length - 1; i++) {
+            if (param[0].matches(possibilities[i])) {
+                if (param[1].matches(possibilities[i])) {
+                    if (param[0].matches("S")) { // fertig
+                        field.moveOut(field.compareStart(currentPlayer.getColour()),
+                                field.compareStart(currentPlayer.getColour()).getBoardStart());
+                    } else if (param[0].matches(field.getAbcd()[i])) {
+                        field.getDestList().get(i).getDestination()[i].setColour(Colour.EMPTY);
+                        field.getDestList().get(i + Integer.parseInt(param[1])).getDestination()[i]
+                                .setColour(currentPlayer.getColour());
+                    } else {
+                        field.getBoard()[Integer.parseInt(param[0])].setColour(Colour.EMPTY);
+                        field.getBoard()[Integer.parseInt(param[1])].setColour(currentPlayer.getColour());
+                    }
+                } else {
+                    throw new InputException("Error, wrong input format!");
+                }
+            }
+        }
 
         //in Check nur Spielfeld einbezogen, Zielfelder wie lösen?
 

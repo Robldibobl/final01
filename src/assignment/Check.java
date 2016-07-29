@@ -16,8 +16,8 @@ public class Check {
      * @param input Input
      * @throws InputException For input format type errors
      */
-    public static void checkInteger(int input) throws InputException {
-        if (input < 0 || input > 39) {
+    public static void checkInteger(String input) throws InputException {
+        if (input.matches("\\d*")) {
             throw new InputException("Error, please choose a board position!"); //XXXXXXXXXXXX
         }
     }

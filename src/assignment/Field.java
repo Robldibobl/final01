@@ -150,8 +150,10 @@ public class Field {
         board[i].setColour(Colour.EMPTY);
     }
 
-    public void moveOut(Token[] start, int i) {
+    public void moveOut(Start start, int i) throws RuleException {
+        start.setStart(start.getStart() - 1);
 
+        add(board, start.getBoardStart(), start.getColour());
     }
 
     /**
@@ -180,7 +182,7 @@ public class Field {
      * @param colour Current player's colour
      * @return Returns a string containing current player's starting area and starting position
      */
-    public String possMoves(Colour colour) {
+    public String possMoves(Colour colour, boolean barrier) {
         String output = new String();
 
         if (compareStart(colour).getStart() > 0) {
@@ -190,6 +192,9 @@ public class Field {
                         output = "S" + abcd[i] + "-" + startList.get(i).getBoardStart();
                     }
                 } else {
+                    if (!barrier) {
+
+                    }
 
                 }
             }
@@ -403,5 +408,9 @@ public class Field {
      */
     public List<Dest> getDestList() {
         return destList;
+    }
+
+    public String[] getAbcd() {
+        return abcd;
     }
 }
