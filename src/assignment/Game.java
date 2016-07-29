@@ -9,6 +9,7 @@ public class Game {
     private int turnCounter = 0;
     private Field field;
     private Player currentPlayer;
+    private String current;
     private boolean backward = false;
     private boolean barrier = false;
     private boolean nojump = false;
@@ -36,6 +37,7 @@ public class Game {
         } else if (currentPlayer.getColour().equals(Colour.YELLOW)) {
             currentPlayer.setColour(Colour.RED);
         }
+        current = currentPlayer.getColour().toString().toLowerCase();
     }
 
     /**
@@ -102,35 +104,47 @@ public class Game {
 
     public String roll(String[] param) throws InputException {
         Check.checkAmount(param, 1);
-
-        try {
-            Integer.parseInt(param[0]);
-        } catch (NumberFormatException e) {
-            throw new InputException("Error, rolled number has to be between 1 and 6!");
-        }
-
-        Check.checkRoll(Integer.parseInt(param[0]));
-        currentRoll = Integer.parseInt(param[0]);
-        String temp;
+        Check.checkRoll(param[0]);
         Player player = new Player();
 
+        currentRoll = Integer.parseInt(param[0]);
+        current = currentPlayer.getColour().toString().toLowerCase();
+        String output = new String();
 
-        if (triply == true) {
-            if (field.compareStart(currentPlayer.getColour()).getStart() == 4) {
-                if (currentRoll != 6) {
+        if (field.compareStart(currentPlayer.getColour()).getStart() == 4) {
+            if (currentRoll != 6) {
+                if (triply == true) {
                     turnCounter++;
 
-                    if (turnCounter != 3) {
-                        return currentPlayer.getColour().toString().toLowerCase();
+                    if (turnCounter < 3) {
+                        return current;
                     } else {
                         turn();
                         turnCounter = 0;
                         currentRoll = 0;
-                        return currentPlayer.getColour().toString().toLowerCase();
+                        return current;
+                    }
+                } else {
+                    turn();
+                    currentRoll = 0;
+                    return current;
+                }
+            } else {
+                return field.possMoves(currentPlayer.getColour()) + "\n" + current;
+            }
+        } else {
+            if (currentRoll != 6) {
+                for (int i = 0; i < 40; i++) {
+                    if (field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
+
                     }
                 }
+            } else {
+
             }
         }
+
+        output += "" + asd + "-" + asdfhj;
 
 
         if (currentRoll == 6) {

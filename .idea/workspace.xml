@@ -6,7 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Check.java" afterPath="$PROJECT_DIR$/src/assignment/Check.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Field.java" afterPath="$PROJECT_DIR$/src/assignment/Field.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Game.java" afterPath="$PROJECT_DIR$/src/assignment/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Main.java" afterPath="$PROJECT_DIR$/src/assignment/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Start.java" afterPath="$PROJECT_DIR$/src/assignment/Start.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Token.java" afterPath="$PROJECT_DIR$/src/assignment/Token.java" />
     </list>
     <ignored path="final01.iws" />
@@ -37,7 +37,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
+            <state relative-caret-position="1292">
               <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
               <folding />
             </state>
@@ -47,9 +47,10 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1415">
-              <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
+            <state relative-caret-position="406">
+              <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
               <folding>
+                <element signature="method#turn#0;class#Game#0" expanded="false" />
                 <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
                 <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
                 <element signature="method#rollX#0;class#Game#0" expanded="false" />
@@ -63,12 +64,21 @@
       <file leaf-file-name="Field.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="149" column="5" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
+            <state relative-caret-position="396">
+              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+                <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+                <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+                <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+                <element signature="method#fillColours#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+                <element signature="method#add#0;class#Field#0" expanded="false" />
+                <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+                <element signature="method#setStart#0;class#Field#0" expanded="false" />
+                <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
                 <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -81,10 +91,27 @@
       <file leaf-file-name="Check.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Check.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+            <state relative-caret-position="850">
+              <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Start.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assignment/Start.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+              <folding>
+                <element signature="docComment;method#Start#0;class#Start#0" expanded="false" />
+                <element signature="docComment;method#getColour#0;class#Start#0" expanded="false" />
+                <element signature="docComment;method#getStart#0;class#Start#0" expanded="false" />
+                <element signature="docComment;method#setStart#0;class#Start#0" expanded="false" />
+                <element signature="docComment;method#getBoardStart#0;class#Start#0" expanded="false" />
+                <element signature="docComment;method#setBoardStart#0;class#Start#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -93,11 +120,15 @@
       <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+            <state relative-caret-position="714">
+              <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
               <folding>
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
+                <element signature="e#583#584#0" expanded="true" />
+                <element signature="e#619#620#0" expanded="true" />
+                <element signature="e#746#747#0" expanded="true" />
+                <element signature="e#776#777#0" expanded="true" />
+                <element signature="e#958#959#0" expanded="true" />
+                <element signature="e#996#997#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,13 +167,13 @@
         <option value="$PROJECT_DIR$/src/assignment/Gamemodes.java" />
         <option value="$PROJECT_DIR$/src/assignment/Colour.java" />
         <option value="$PROJECT_DIR$/src/assignment/Player.java" />
-        <option value="$PROJECT_DIR$/src/assignment/Start.java" />
         <option value="$PROJECT_DIR$/src/assignment/Dest.java" />
-        <option value="$PROJECT_DIR$/src/assignment/Token.java" />
-        <option value="$PROJECT_DIR$/src/assignment/Field.java" />
         <option value="$PROJECT_DIR$/src/assignment/Main.java" />
-        <option value="$PROJECT_DIR$/src/assignment/Game.java" />
+        <option value="$PROJECT_DIR$/src/assignment/Token.java" />
+        <option value="$PROJECT_DIR$/src/assignment/Start.java" />
         <option value="$PROJECT_DIR$/src/assignment/Check.java" />
+        <option value="$PROJECT_DIR$/src/assignment/Field.java" />
+        <option value="$PROJECT_DIR$/src/assignment/Game.java" />
       </list>
     </option>
   </component>
@@ -183,9 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -242,6 +270,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -736,33 +767,32 @@
       <workItem from="1469480226265" duration="1098000" />
       <workItem from="1469568969260" duration="605000" />
       <workItem from="1469632869090" duration="29290000" />
-      <workItem from="1469719071256" duration="11640000" />
+      <workItem from="1469719071256" duration="21181000" />
+      <workItem from="1469802223824" duration="1207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125189000" />
+    <option name="totallyTimeSpent" value="135937000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32870865" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26360726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26680896" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19989339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19989339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -772,8 +802,10 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32870865" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -789,7 +821,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -818,8 +850,17 @@
           <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+            <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+            <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+            <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+            <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -851,6 +892,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
             <element signature="method#rollX#0;class#Game#0" expanded="false" />
@@ -866,8 +908,17 @@
           <caret line="140" column="26" selection-start-line="140" selection-start-column="26" selection-end-line="140" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+            <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+            <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+            <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+            <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -899,6 +950,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
             <element signature="method#rollX#0;class#Game#0" expanded="false" />
@@ -914,8 +966,17 @@
           <caret line="140" column="26" selection-start-line="140" selection-start-column="26" selection-end-line="140" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+            <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+            <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+            <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+            <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -947,6 +1008,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
             <element signature="method#rollX#0;class#Game#0" expanded="false" />
@@ -962,8 +1024,17 @@
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+            <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+            <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+            <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+            <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -1009,6 +1080,7 @@
         <state relative-caret-position="85">
           <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
           <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
             <element signature="method#rollX#0;class#Game#0" expanded="false" />
@@ -1141,7 +1213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="579" column="0" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,11 +1220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="2132" column="0" selection-start-line="2132" selection-start-column="0" selection-end-line="2132" selection-end-column="0" />
-          <folding>
-            <element signature="e#66457#66458#0" expanded="false" />
-            <element signature="e#66495#66496#0" expanded="false" />
-            <element signature="e#83020#83021#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1176,7 +1242,7 @@
         <state relative-caret-position="459">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1186,7 +1252,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1199,49 +1265,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment/Start.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#482#483#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Dest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="false" />
+            <element signature="e#475#476#0" expanded="false" />
+            <element signature="e#514#515#0" expanded="false" />
+            <element signature="e#548#549#0" expanded="false" />
+            <element signature="e#736#737#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state relative-caret-position="714">
+          <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
           <folding>
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#746#747#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#958#959#0" expanded="true" />
+            <element signature="e#996#997#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment/Start.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+          <folding>
+            <element signature="docComment;method#Start#0;class#Start#0" expanded="false" />
+            <element signature="docComment;method#getColour#0;class#Start#0" expanded="false" />
+            <element signature="docComment;method#getStart#0;class#Start#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Start#0" expanded="false" />
+            <element signature="docComment;method#getBoardStart#0;class#Start#0" expanded="false" />
+            <element signature="docComment;method#setBoardStart#0;class#Start#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Check.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+        <state relative-caret-position="850">
+          <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1250,12 +1329,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="149" column="5" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
+        <state relative-caret-position="396">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#fillStart#0;class#Field#0" expanded="false" />
+            <element signature="method#fillDest#0;class#Field#0" expanded="false" />
+            <element signature="method#fillBoard#0;class#Field#0" expanded="false" />
+            <element signature="method#fillAbcd#0;class#Field#0" expanded="false" />
+            <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
+            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="method#setStart#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setPositions#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
@@ -1264,19 +1352,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1415">
-          <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
+        <state relative-caret-position="406">
+          <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
           <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
             <element signature="method#rollX#0;class#Game#0" expanded="false" />

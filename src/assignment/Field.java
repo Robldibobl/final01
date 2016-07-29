@@ -54,6 +54,10 @@ public class Field {
         startList.add(startBlue);
         startList.add(startGreen);
         startList.add(startYellow);
+
+        for (int i = 0; i < 4; i++) {
+            startList.get(i).setBoardStart(i * 10);
+        }
     }
 
     private void fillDest() {
@@ -171,26 +175,51 @@ public class Field {
         }
     }
 
+    /**
+     * Returns a string containing a player's current possible moves.
+     *
+     * @param colour Current player's colour
+     * @return Returns a string containing current player's starting area and starting position
+     */
+    public String possMoves(Colour colour) {
+        String output = new String();
+
+        if (compareStart(colour).getStart() > 0) {
+            for (int i = 0; i < 4; i++) {
+                if (!board[startList.get(i).getBoardStart()].getColour().equals(colour)) {
+                    if (colour.equals(compareStart(colour).getColour())) {
+                        output = "S" + abcd[i] + "-" + startList.get(i).getBoardStart();
+                    }
+                } else {
+
+                }
+            }
+            return output;
+        } else {
+
+        }
+
+
+    }
+
     public String possibleMoves(int roll, Colour colour) {
         String output = new String();
 
-        if (roll != 6 && startRed.getStart() == 4) {
-            return output;
-        } else {
-            if (roll == 6 && startRed.getStart() > 0) {
-                output += "" + "SR" + "-" + 0 + "\n";
-            }
+
+        if (roll == 6 && startRed.getStart() > 0) {
+            output += "" + "SR" + "-" + 0 + "\n";
+        }
 
 
-            for (int i = 0; i < 40; i++) {
-                if (board[i].getColour().equals(colour)) {
-                    if (!board[i + roll % 40].getColour().equals(colour)) {
-                        int temp = i + roll % 40;
-                        output += "" + i + "-" + temp + "\n";
-                    }
+        for (int i = 0; i < 40; i++) {
+            if (board[i].getColour().equals(colour)) {
+                if (!board[i + roll % 40].getColour().equals(colour)) {
+                    int temp = i + roll % 40;
+                    output += "" + i + "-" + temp + "\n";
                 }
             }
         }
+
         /*
         Überprüfung der ausführbaren Züge
          */
@@ -241,8 +270,6 @@ public class Field {
                 pos = positions[i].split(",");
                 char colour = colours[i].charAt(0);
                 Check.checkOrder(pos, colour);
-
-                // Überprüfung, ob Strings in richtiger Reihenfolge
 
                 for (int j = 0; j < 4; j++) {
 

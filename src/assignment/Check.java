@@ -1,5 +1,6 @@
 package assignment;
 
+import java.util.IntSummaryStatistics;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,21 +17,21 @@ public class Check {
      * @throws InputException For input format type errors
      */
     public static void checkInteger(int input) throws InputException {
-        if (input < 0 || input >= 40) {
+        if (input < 0 || input > 39) {
             throw new InputException("Error, please choose a board position!"); //XXXXXXXXXXXX
         }
     }
 
     /**
-     * Checks if input is an integer.
+     * Checks if input is a valid field.
      *
      * @param input Input
      * @return Returns true or false
      * @throws InputException For input format type errors
      */
     public static boolean isInteger(int input) throws InputException {
-        if (input < 0 || input >= 40) {
-            throw new InputException("Error, please choose a number between 1 and 6!");
+        if (input < 0 || input > 39) {
+            throw new InputException("Error, please choose a number between 0 and 39!");
         } else {
             return true;
         }
@@ -42,9 +43,32 @@ public class Check {
      * @param input String array with parameters
      * @throws InputException For input format type errors
      */
-    public static void checkRoll(int input) throws InputException {
-        if (input < 1 || input > 6) {
+    public static void checkRoll(String input) throws InputException {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
             throw new InputException("Error, rolled number has to be between 1 and 6!");
+        }
+
+        int roll = Integer.parseInt(input);
+
+        if (roll < 1 || roll > 6) {
+            throw new InputException("Error, rolled number has to be between 1 and 6!");
+        }
+    }
+
+    /**
+     * Checks if input is a valid roll.
+     *
+     * @param input Input
+     * @return Returns true or false
+     * @throws InputException For input format type errors
+     */
+    public static boolean isRoll(int input) throws InputException {
+        if (input < 1 || input > 6) {
+            throw new InputException("Error, please choose a number between 1 and 6!");
+        } else {
+            return true;
         }
     }
 
