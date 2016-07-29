@@ -8,7 +8,6 @@ import java.util.List;
  * @version 1.0
  */
 public class Field {
-    private int currentRoll; // *********************
     private List<Start> startList;
     private List<Dest> destList;
     private Start startRed;
@@ -196,7 +195,7 @@ public class Field {
             }
             return output;
         } else {
-
+            return " ";
         }
 
 
@@ -395,5 +394,14 @@ public class Field {
      */
     public Token[] getBoard() {
         return board;
+    }
+
+    /**
+     * Getter for destList.
+     *
+     * @return Returns the list of destination areas
+     */
+    public List<Dest> getDestList() {
+        return destList;
     }
 }

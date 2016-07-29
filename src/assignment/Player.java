@@ -15,6 +15,7 @@ public class Player {
 
     /**
      * Getter for player colours
+     *
      * @return Returns the colour of a player
      */
     public Colour getColour() {
@@ -23,6 +24,7 @@ public class Player {
 
     /**
      * Setter for player colours
+     *
      * @param colour Colour of a player
      */
     public void setColour(Colour colour) {

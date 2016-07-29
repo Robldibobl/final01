@@ -58,21 +58,16 @@ public class Game {
         field.setStart();
 
         if (optionals.length > 1) {
-            for (String optional : optionals) {
-                if (optional.equals("BACKWARD")) {
+            for (int i = 1; i < optionals.length; i++) {
+                if (optionals[i].equals(Gamemodes.BACKWARD.name())) {
                     backward = true;
-                } else if (optional.equals("BARRIER")) {
+                } else if (optionals[i].equals(Gamemodes.BARRIER.name())) {
                     barrier = true;
-                } else if (optional.equals("NOJUMP")) {
+                } else if (optionals[i].equals(Gamemodes.NOJUMP.name())) {
                     nojump = true;
-                } else if (optional.equals("TRIPLY")) {
+                } else if (optionals[i].equals(Gamemodes.TRIPLY.name())) {
                     triply = true;
-                } else {
-                    throw new InputException("Error, wrong input format!");
-                }
-            }
-            for (int i = 0; i < optionals.length; i++) {
-                if (optionals[i].contains(",")) {
+                } else if (optionals[i].contains(",")) {
                     if (!optionals[i].equals(optionals[optionals.length - 1])) {
                         throw new InputException("Error, please comply by the input format! If you wish to use "
                                 + "optional rules or positions, please use this input format: <rules> <positions>");
@@ -82,6 +77,8 @@ public class Game {
                         field.setPositions(positions);
                         break;
                     }
+                } else {
+                    throw new InputException("Error, wrong input format!");
                 }
             }
         }
@@ -111,9 +108,9 @@ public class Game {
         current = currentPlayer.getColour().toString().toLowerCase();
         String output = new String();
 
-        if (field.compareStart(currentPlayer.getColour()).getStart() == 4) {
-            if (currentRoll != 6) {
-                if (triply == true) {
+        if (currentRoll != 6) {
+            if (field.compareStart(currentPlayer.getColour()).getStart() == 4) { // falls Start voll
+                if (triply == true) { // und triply aktiv, dann bis zu 3 Mal würfeln; dann nächster dran
                     turnCounter++;
 
                     if (turnCounter < 3) {
@@ -129,22 +126,39 @@ public class Game {
                     currentRoll = 0;
                     return current;
                 }
-            } else {
+            } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
                 return field.possMoves(currentPlayer.getColour()) + "\n" + current;
             }
         } else {
-            if (currentRoll != 6) {
+            if (field.compareStart(currentPlayer.getColour()).getStart() > 0) { // falls 6 und noch Tokens in start,
+                // dann diese rausholen, falls Platz; falls kein Platz, dann versperrenden Token bewegen, falls Barrier
+                // aktiv, dann kein Problem
+
+            } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
                 for (int i = 0; i < 40; i++) {
-                    if (field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
+                    if (!field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
+
+                    } else { // falls Barrier aktiv, dann auch möglich
+                        if (barrier == true) {
+
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                for (int j = 0; j < 4; j++) {
+                    if (!nojump) {
+                        if (!field.getDestList().get(j).getColour().equals(currentPlayer.getColour())) {
+                            // kann dorthin moven, falls Nojump nicht aktiv
+                        }
+                    } else { // alle Dest Felder müssen überprüft werden auf dem Weg
 
                     }
                 }
-            } else {
-
             }
         }
 
-        output += "" + asd + "-" + asdfhj;
+        //output += "" + asd + "-" + asdfhj;
 
 
         if (currentRoll == 6) {
@@ -157,9 +171,9 @@ public class Game {
         sonst alle möglichen Züge ausgeben
          */
 
-        temp = field.possibleMoves(currentRoll, currentPlayer.getColour()); // mit obigem triply zusammenfügen
+        //temp = field.possibleMoves(currentRoll, currentPlayer.getColour()); // mit obigem triply zusammenfügen
 
-        if (temp.length() == 0) {
+        if (0 == 0) {
             turn();
 
             // TRIPLY HERE
@@ -170,7 +184,7 @@ public class Game {
 
         currentPlayer = player;
         currentRoll = 0;
-        return temp + currentPlayer.getColour().toString().toLowerCase();
+        return currentPlayer.getColour().toString().toLowerCase();
     }
 
     /**
