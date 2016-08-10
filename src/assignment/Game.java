@@ -1,8 +1,5 @@
 package assignment;
 
-import jdk.internal.util.xml.impl.Input;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
-
 /**
  * @author Robin Fritz
  * @version 1.0
@@ -13,7 +10,7 @@ public class Game {
     private Field field;
     private Player currentPlayer;
     private String current;
-    private String rolls;
+    private String[] rolls;
     private boolean backward = false;
     private boolean barrier = false;
     private boolean nojump = false;
@@ -108,6 +105,10 @@ public class Game {
         Check.checkRoll(param[0]);
         Player player = new Player();
 
+
+        // HIER BACKWARD PRÜFEN
+
+
         currentRoll = Integer.parseInt(param[0]);
         current = currentPlayer.getColour().toString().toLowerCase();
         String output = new String();
@@ -132,7 +133,11 @@ public class Game {
                 }
             } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
                 rolls = field.possMoves(currentPlayer.getColour(), barrier);
-                return rolls + "\n" + current;
+
+                for (int i = 0; i < rolls.length; i++) {
+                    output += "" + rolls[i] + "\n";
+                }
+                return output + "\n" + current;
             }
         } else {
             if (field.compareStart(currentPlayer.getColour()).getStart() > 0) { // falls 6 und noch Tokens in start,
@@ -216,26 +221,54 @@ public class Game {
         }
 
         Check.checkAmount(param, 2);
-        Check.checkInteger(param[0]);
-        Check.checkInteger(param[1]);
+        boolean b = true;
+
+        for (int j = 0; j < 2; j++) {
+            if (param[j].matches("" + current.toUpperCase().charAt(0))) {
+                b = false;
+            } else {
+                b = true;
+            }
+            if (b) {
+                Check.checkInteger(param[j]);
+                Check.isField(Integer.parseInt(param[j]));
+            }
+        }
         String[] possibilities;
         String output;
 
-        possibilities = rolls.split("\\s");
+        for (int m = 0; m < rolls.length; m++) {
+            possibilities = rolls[m].split("\\s");
 
-        for (int i = 0; i < possibilities.length - 1; i++) {
-            if (param[0].matches(possibilities[i])) {
-                if (param[1].matches(possibilities[i])) {
-                    if (param[0].matches("S")) { // fertig
+            if (param[0].equals(possibilities[0])) {
+                if (param[1].equals(possibilities[1])) {
+
+                    if (param[0].matches("S")) {
                         field.moveOut(field.compareStart(currentPlayer.getColour()),
-                                field.compareStart(currentPlayer.getColour()).getBoardStart());
-                    } else if (param[0].matches(field.getAbcd()[i])) {
-                        field.getDestList().get(i).getDestination()[i].setColour(Colour.EMPTY);
-                        field.getDestList().get(i + Integer.parseInt(param[1])).getDestination()[i]
-                                .setColour(currentPlayer.getColour());
+                                field.compareStart(currentPlayer.getColour()).getBoardStart(),
+                                Integer.parseInt(param[1]), currentPlayer.getColour());
+                        turn();
+                        return param[1] + "\n" + current;
+
+                    } else if ("ABCD".contains("" + param[0].charAt(0))) {
+                        field.moveDest("" + param[0].charAt(0), currentRoll, currentPlayer.getColour(), nojump);
+                        if (currentRoll != 6) {
+                            turn();
+                            return param[1] + "\n" + current;
+                        } else {
+                            return param[1] + "\n" + current;
+                        }
+
                     } else {
-                        field.getBoard()[Integer.parseInt(param[0])].setColour(Colour.EMPTY);
-                        field.getBoard()[Integer.parseInt(param[1])].setColour(currentPlayer.getColour());
+                        field.move(field.getBoard(), Integer.parseInt(param[0]), currentRoll, // Überprüfung, ob jemand gewonnen hat!
+                                currentPlayer.getColour(), barrier, nojump);
+
+                        if (currentRoll != 6) {
+                            turn();
+                            return param[1] + "\n" + current;
+                        } else {
+                            return param[1] + "\n" + current;
+                        }
                     }
                 } else {
                     throw new InputException("Error, wrong input format!");
@@ -243,18 +276,7 @@ public class Game {
             }
         }
 
-        //in Check nur Spielfeld einbezogen, Zielfelder wie lösen?
-
-        output = field.moveToken(field.getBoard(), Integer.parseInt(param[0]), Integer.parseInt(param[1]), currentPlayer
-                .getColour());
-
-        if (currentRoll != 6) {
-            turn();
-        }
-
-        output += "" + "\n" + currentPlayer.getColour().toString().toLowerCase();
-
-        return output;
+        throw new InputException("Error, input does not match with possible movements on the board!");
     }
 
     /**

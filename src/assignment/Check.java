@@ -17,19 +17,34 @@ public class Check {
      * @throws InputException For input format type errors
      */
     public static void checkInteger(String input) throws InputException {
-        if (input.matches("\\d*")) {
-            throw new InputException("Error, please choose a board position!"); //XXXXXXXXXXXX
+        if (!input.matches("\\d*")) {
+            throw new InputException("Error, please choose a board position!");
+        }
+    }
+
+    /**
+     * Checks if input is an integer.
+     *
+     * @param input Input
+     * @return Returns true or throws an exception
+     * @throws InputException For input format type errors
+     */
+    public static boolean isInteger(String input) throws InputException {
+        if (!input.matches("\\d*")) {
+            throw new InputException("Error, please choose a number between 0 and 39!");
+        } else {
+            return true;
         }
     }
 
     /**
      * Checks if input is a valid field.
      *
-     * @param input Input
-     * @return Returns true or false
+     * @param input Field position
+     * @return Returns true or throws and exception
      * @throws InputException For input format type errors
      */
-    public static boolean isInteger(int input) throws InputException {
+    public static boolean isField(int input) throws InputException {
         if (input < 0 || input > 39) {
             throw new InputException("Error, please choose a number between 0 and 39!");
         } else {
@@ -145,7 +160,7 @@ public class Check {
         for (int i = 0; i < 4; i++) {
             String v = pos[i];
             try {
-                isInteger(Integer.parseInt(v));
+                isInteger(v);
                 if (Integer.parseInt(v) < 0 || Integer.parseInt(v) > 39) {
                     throw new InputException("Error, wrong input format!");
                 }

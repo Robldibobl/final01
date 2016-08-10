@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="049bb5b8-9fe3-4f52-8c7e-548e67b7211e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Check.java" afterPath="$PROJECT_DIR$/src/assignment/Check.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Field.java" afterPath="$PROJECT_DIR$/src/assignment/Field.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assignment/Game.java" afterPath="$PROJECT_DIR$/src/assignment/Game.java" />
     </list>
     <ignored path="final01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,20 +35,19 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="-85">
               <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="232" column="24" selection-start-line="232" selection-start-column="24" selection-end-line="232" selection-end-column="24" />
+            <state relative-caret-position="366">
+              <caret line="262" column="133" selection-start-line="262" selection-start-column="133" selection-end-line="262" selection-end-column="133" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#turn#0;class#Game#0" expanded="false" />
                 <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
                 <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
@@ -57,21 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Colour.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignment/Colour.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Field.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Field.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment/Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2669">
-              <caret line="412" column="31" selection-start-line="412" selection-start-column="31" selection-end-line="412" selection-end-column="31" />
+            <state relative-caret-position="272">
+              <caret line="154" column="43" selection-start-line="154" selection-start-column="43" selection-end-line="154" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#Field#0;class#Field#0" expanded="false" />
@@ -83,7 +75,9 @@
                 <element signature="method#fillColours#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-                <element signature="method#add#0;class#Field#0" expanded="false" />
+                <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+                <element signature="method#setToken#0;class#Field#0" expanded="false" />
+                <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
                 <element signature="method#setStart#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -93,7 +87,6 @@
                 <element signature="method#getPrint#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
                 <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-                <element signature="e#12603#12604#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,10 +95,16 @@
       <file leaf-file-name="Check.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment/Check.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+            <state relative-caret-position="-1264">
+              <caret line="20" column="79" selection-start-line="20" selection-start-column="79" selection-end-line="20" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+                <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+                <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+                <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+                <element signature="method#checkString#0;class#Check#0" expanded="false" />
+                <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -149,8 +148,8 @@
         <option value="$PROJECT_DIR$/src/assignment/Token.java" />
         <option value="$PROJECT_DIR$/src/assignment/Start.java" />
         <option value="$PROJECT_DIR$/src/assignment/Check.java" />
-        <option value="$PROJECT_DIR$/src/assignment/Field.java" />
         <option value="$PROJECT_DIR$/src/assignment/Game.java" />
+        <option value="$PROJECT_DIR$/src/assignment/Field.java" />
       </list>
     </option>
   </component>
@@ -191,7 +190,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -248,8 +248,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -750,15 +749,17 @@
       <workItem from="1470115425053" duration="47000" />
       <workItem from="1470345887297" duration="68000" />
       <workItem from="1470346237041" duration="591000" />
+      <workItem from="1470541348926" duration="489000" />
+      <workItem from="1470750573663" duration="13793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146613000" />
+    <option name="totallyTimeSpent" value="160895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1364" height="766" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -768,7 +769,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26247987" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26523888" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26523888" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20168711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -802,7 +803,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="26" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -840,7 +841,9 @@
             <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+            <element signature="method#setToken#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
             <element signature="method#setStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -850,7 +853,6 @@
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-            <element signature="e#12603#12604#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -861,6 +863,12 @@
           <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -878,7 +886,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
@@ -904,7 +911,9 @@
             <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+            <element signature="method#setToken#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
             <element signature="method#setStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -914,7 +923,6 @@
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-            <element signature="e#12603#12604#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -925,6 +933,12 @@
           <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -942,7 +956,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
@@ -968,7 +981,9 @@
             <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+            <element signature="method#setToken#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
             <element signature="method#setStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -978,7 +993,6 @@
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-            <element signature="e#12603#12604#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -989,6 +1003,12 @@
           <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1006,7 +1026,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
@@ -1032,7 +1051,9 @@
             <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+            <element signature="method#setToken#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
             <element signature="method#setStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -1042,7 +1063,6 @@
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-            <element signature="e#12603#12604#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1053,6 +1073,12 @@
           <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1084,7 +1110,6 @@
         <state relative-caret-position="85">
           <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#turn#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
@@ -1253,12 +1278,12 @@
         <state relative-caret-position="714">
           <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
           <folding>
-            <element signature="e#583#584#0" expanded="true" />
-            <element signature="e#619#620#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="false" />
+            <element signature="e#619#620#0" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#776#777#0" expanded="false" />
+            <element signature="e#958#959#0" expanded="false" />
+            <element signature="e#996#997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1278,9 +1303,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment/Colour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="-85">
           <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding />
         </state>
@@ -1288,18 +1321,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Check.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        <state relative-caret-position="-1264">
+          <caret line="20" column="79" selection-start-line="20" selection-start-column="79" selection-end-line="20" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="docComment;method#checkInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isInteger#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#isField#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="method#checkString#0;class#Check#0" expanded="false" />
+            <element signature="docComment;method#checkOrder#0;class#Check#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="262" column="133" selection-start-line="262" selection-start-column="133" selection-end-line="262" selection-end-column="133" />
+          <folding>
+            <element signature="method#turn#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
+            <element signature="method#rollX#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#print#0;class#Game#0" expanded="false" />
+            <element signature="method#print#0;class#Game#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2669">
-          <caret line="412" column="31" selection-start-line="412" selection-start-column="31" selection-end-line="412" selection-end-column="31" />
+        <state relative-caret-position="272">
+          <caret line="154" column="43" selection-start-line="154" selection-start-column="43" selection-end-line="154" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#Field#0;class#Field#0" expanded="false" />
@@ -1311,7 +1365,9 @@
             <element signature="method#fillColours#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#compareDest#0;class#Field#0" expanded="false" />
-            <element signature="method#add#0;class#Field#0" expanded="false" />
+            <element signature="method#moveOut#0;class#Field#0" expanded="false" />
+            <element signature="method#setToken#0;class#Field#0" expanded="false" />
+            <element signature="docComment;method#moveDest#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#setStart#0;class#Field#0" expanded="false" />
             <element signature="method#setStart#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#possMoves#0;class#Field#0" expanded="false" />
@@ -1321,31 +1377,6 @@
             <element signature="method#getPrint#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getBoard#0;class#Field#0" expanded="false" />
             <element signature="docComment;method#getDestList#0;class#Field#0" expanded="false" />
-            <element signature="e#12603#12604#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment/Colour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="232" column="24" selection-start-line="232" selection-start-column="24" selection-end-line="232" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#turn#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#start#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#rollX#0;class#Game#0" expanded="false" />
-            <element signature="method#rollX#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#print#0;class#Game#0" expanded="false" />
-            <element signature="method#print#0;class#Game#0" expanded="false" />
           </folding>
         </state>
       </provider>
