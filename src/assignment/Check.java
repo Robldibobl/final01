@@ -1,6 +1,5 @@
 package assignment;
 
-import java.util.IntSummaryStatistics;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +30,7 @@ public class Check {
      */
     public static boolean isInteger(String input) throws InputException {
         if (!input.matches("\\d*")) {
-            throw new InputException("Error, please choose a number between 0 and 39!");
+            return false;
         } else {
             return true;
         }

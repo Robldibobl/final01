@@ -22,6 +22,7 @@ public class Field {
     private Token token;
     private String[] abcd;
     private String[] colours;
+    private boolean winner;
 
     /**
      * Constructor of the class Field.
@@ -115,22 +116,20 @@ public class Field {
         }
         return null;
     }
-        /*
-        vorziehen -> leeres Feld, eigene Figur, andere Figur
 
-        eigene: Zug nicht möglich
-
-        leer: reinschreiben, vorheriges Feld löschen
-
-        andere: überprüfen, welche Farbe Figur hat, Start eins hochzählen, löschen/überschreiben PLUS
-
-        vorheriges Feld löschen
-         */
-
+    /**
+     * Method to move a token from a starting area onto the board.
+     *
+     * @param start  Starting area of a player
+     * @param i      Staring point
+     * @param j      Starting point input
+     * @param colour Colour of the player
+     * @throws RuleException For game rule violations
+     */
     public void moveOut(Start start, int i, int j, Colour colour) throws RuleException {
         start.setStart(start.getStart() - 1);
 
-        if (j != compareStart(colour).getBoardStart()) {
+        if (i != j) {
             throw new RuleException("Error, you are not allowed to move your token there!");
         }
 
@@ -143,16 +142,77 @@ public class Field {
         }
     }
 
-    public void move(Token[] board, int i, int roll, Colour colour, boolean barrier, boolean nojump) throws RuleException {
-        setToken(board, i, roll, colour, barrier, nojump);
+    /**
+     * Method to move tokens on the board and check if a player has won.
+     *
+     * @param board   Board
+     * @param i       Position of the token before being moved
+     * @param roll    Rolled number
+     * @param colour  Player colour
+     * @param barrier Boolean barrier
+     * @param nojump  Boolean nojump
+     * @return Returns true, if a player has won
+     * @throws RuleException For game rule violations
+     */
+    public void move(Token[] board, int i, int roll, String param, Colour colour, boolean barrier, boolean nojump)
+            throws RuleException, InputException {
+        setToken(board, i, roll, param, colour, barrier, nojump);
+
+        for (int k = 0; k < 4; k++) {
+            if (!compareDest(colour).getDestinationIndex(compareDest(colour).getDestination(), k)
+                    .getColour().equals(colour)) {
+                winner = false;
+            }
+        }
+        winner = true;
     }
 
-    private void setToken(Token[] board, int i, int roll, Colour colour, boolean barrier, boolean nojump) throws RuleException { ////////////////////////
+    private void setToken(Token[] board, int i, int roll, String param, Colour colour, boolean barrier, boolean nojump)
+            throws RuleException, InputException { ////////////////////////
         for (int k = 0; k < 4; k++) {
-            // über Startpositionen, falls gleiche Farbe, keine barrier und return
+            if (i + roll == startList.get(k).getBoardStart()) {
+
+            }
         }
 
-        // Überprüfung, ob jemand gewinnt!!
+        if (Check.isInteger(param)) {
+            if (Integer.parseInt(param) < i) {
+
+            }
+            if (barrier && board[i + roll].getColour().equals(colour) && !board[i + roll].isBarrier()) {
+                board[i + roll].setBarrier(true);
+                if (board[i].isBarrier()) {
+                    board[i].setBarrier(false);
+                } else {
+                    board[i].setColour(Colour.EMPTY);
+                }
+            } else {
+                if (!board[i + roll].getColour().equals(colour)) {
+                    if (!board[i + roll].getColour().equals(Colour.EMPTY)) {
+                        compareStart(board[i + roll].getColour()).setStart(compareStart(board[i + roll].getColour())
+                                .getStart() + 1);
+                        board[i + roll].setColour(colour);
+                        board[i].setColour(Colour.EMPTY);
+                    } else {
+                        board[i + roll].setColour(colour);
+                        board[i].setColour(Colour.EMPTY);
+                    }
+                }
+            }
+        } else {
+            for (int j = 0; j < 4; j++) {
+                if (abcd[j].equals("" + param.charAt(0))) {
+                    for (int l = 0; l < j; l++) {
+                        if (!compareDest(colour).getDestinationIndex(compareDest(colour).getDestination(), l).getColour().equals(colour)) {
+                            if (nojump) {
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
         if (!board[i].getColour().equals(colour)) {
             placeToken(board, i, colour);
@@ -179,19 +239,26 @@ public class Field {
     /**
      * Moves tokens inside of destination areas.
      *
-     * @param i      Starting position inside the destination area
-     * @param s      Rolled number
+     * @param s      Starting position inside the destination area
+     * @param roll   Rolled number
      * @param colour Current player's colour
+     * @param nojump Boolean nojump
+     * @throws RuleException For game rule violations
      */
-    public void moveDest(String s, int roll, Colour colour, boolean nojump) {
+    public void moveDest(String s, int roll, Colour colour, boolean nojump) throws RuleException {
 
         for (int k = 0; k < 4; k++) {
             if (abcd[k].equals(s)) {
 
-                if (nojump) {
-
-                    /////////////////////////////
-
+                if (nojump) { // das hier in roll Befehl
+                    for (int i = 0; i + k < k + roll; i++) {
+                        if (board[i + k].getColour().equals(colour)) {
+                            return;
+                        }
+                    }
+                    compareDest(colour).getDestination()[k + roll].setColour(colour);
+                    compareDest(colour).getDestination()[k].setColour(Colour.EMPTY);
+                    return;
                 } else {
                     compareDest(colour).getDestination()[k + roll].setColour(colour);
                     compareDest(colour).getDestination()[k].setColour(Colour.EMPTY);
@@ -200,7 +267,6 @@ public class Field {
             }
         }
     }
-
 
     /**
      * Sets the standard positions at game start.
@@ -220,78 +286,6 @@ public class Field {
             green.setDestinationColour(green.getDestination(), i, Colour.EMPTY);
             yellow.setDestinationColour(yellow.getDestination(), i, Colour.EMPTY);
         }
-    }
-
-    /**
-     * Returns a string containing a player's current possible moves.
-     *
-     * @param colour Current player's colour
-     * @return Returns a string containing current player's starting area and starting position
-     */
-    public String[] possMoves(Colour colour, boolean barrier) {
-        String[] output = null;
-
-        if (compareStart(colour).getStart() > 0) {
-            for (int i = 0; i < 4; i++) {
-                if (!board[startList.get(i).getBoardStart()].getColour().equals(colour)) {
-                    if (colour.equals(compareStart(colour).getColour())) {
-                        output = "S" + abcd[i] + "-" + startList.get(i).getBoardStart();
-                    }
-                } else {
-                    if (!barrier) {
-
-                    }
-
-                }
-            }
-            return output;
-        } else {
-            return " ";
-        }
-
-
-    }
-
-    public String possibleMoves(int roll, Colour colour) {
-        String output = new String();
-
-
-        if (roll == 6 && startRed.getStart() > 0) {
-            output += "" + "SR" + "-" + 0 + "\n";
-        }
-
-
-        for (int i = 0; i < 40; i++) {
-            if (board[i].getColour().equals(colour)) {
-                if (!board[i + roll % 40].getColour().equals(colour)) {
-                    int temp = i + roll % 40;
-                    output += "" + i + "-" + temp + "\n";
-                }
-            }
-        }
-
-        /*
-        Überprüfung der ausführbaren Züge
-         */
-
-        return output;
-    }
-
-    public String moveToken(Token[] board, int from, int to, Colour colour) throws RuleException {
-        String output = new String();
-
-        add(board, to, colour);
-        if (from >= 0 && from < 40) {
-            remove(board, from);
-        } else {
-            if (true) {
-
-            } else {
-
-            }
-        }
-        output = "" + to;
-        return output;
     }
 
     /**
@@ -440,10 +434,6 @@ public class Field {
         return board;
     }
 
-    public List<Start> getStartList() {
-        return startList;
-    }
-
     /**
      * Getter for destList.
      *
@@ -453,13 +443,12 @@ public class Field {
         return destList;
     }
 
-    public String[] getAbcd() {
-        return abcd;
+    /**
+     * Getter for boolean winner.
+     *
+     * @return Returns winner
+     */
+    public boolean isWinner() {
+        return winner;
     }
-
-    public String[] getColours() {
-        return colours;
-    }
-
-
 }

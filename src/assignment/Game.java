@@ -1,5 +1,7 @@
 package assignment;
 
+import java.util.List;
+
 /**
  * @author Robin Fritz
  * @version 1.0
@@ -10,7 +12,7 @@ public class Game {
     private Field field;
     private Player currentPlayer;
     private String current;
-    private String[] rolls;
+    private List<String> rolls;
     private boolean backward = false;
     private boolean barrier = false;
     private boolean nojump = false;
@@ -38,6 +40,7 @@ public class Game {
         } else if (currentPlayer.getColour().equals(Colour.YELLOW)) {
             currentPlayer.setColour(Colour.RED);
         }
+        currentRoll = 0;
         current = currentPlayer.getColour().toString().toLowerCase();
     }
 
@@ -105,96 +108,89 @@ public class Game {
         Check.checkRoll(param[0]);
         Player player = new Player();
 
-
-        // HIER BACKWARD PRÜFEN
-
-
         currentRoll = Integer.parseInt(param[0]);
         current = currentPlayer.getColour().toString().toLowerCase();
         String output = new String();
+        boolean b = true;
 
         if (currentRoll != 6) {
-            if (field.compareStart(currentPlayer.getColour()).getStart() == 4) { // falls Start voll
-                if (triply == true) { // und triply aktiv, dann bis zu 3 Mal würfeln; dann nächster dran
-                    turnCounter++;
-
-                    if (turnCounter < 3) {
-                        return current;
-                    } else {
-                        turn();
-                        turnCounter = 0;
-                        currentRoll = 0;
-                        return current;
-                    }
-                } else {
-                    turn();
-                    currentRoll = 0;
-                    return current;
-                }
-            } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
-                rolls = field.possMoves(currentPlayer.getColour(), barrier);
-
-                for (int i = 0; i < rolls.length; i++) {
-                    output += "" + rolls[i] + "\n";
-                }
-                return output + "\n" + current;
-            }
-        } else {
-            if (field.compareStart(currentPlayer.getColour()).getStart() > 0) { // falls 6 und noch Tokens in start,
-                // dann diese rausholen, falls Platz; falls kein Platz, dann versperrenden Token bewegen, falls Barrier
-                // aktiv, dann kein Problem
-
-            } else { // board + Ziel durchgehen, mögliche Züge überprüfen, in output speichern -> returnen
+            if (field.compareStart(currentPlayer.getColour()).getStart() < 4) {
                 for (int i = 0; i < 40; i++) {
-                    if (!field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
-
-                    } else { // falls Barrier aktiv, dann auch möglich
-                        if (barrier == true) {
-
+                    if (field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
+                        if (backward) {
+                            if (i - currentRoll > field.compareStart(currentPlayer.getColour()).getBoardStart()) {
+                                if (!field.getBoard()[i - currentRoll].getColour().equals(currentPlayer.getColour())
+                                        && !field.getBoard()[i - currentRoll].getColour().equals(Colour.EMPTY)) {
+                                    if (!barrier) {
+                                        rolls.add("" + i + "-" + (i - currentRoll));
+                                    } else {
+                                        for (int j = i - currentRoll; j < i; j++) {
+                                            if (field.getBoard()[j].isBarrier()) {
+                                                b = false;
+                                            }
+                                        }
+                                        if (b) {
+                                            rolls.add("" + i + "-" + (i - currentRoll));
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (i + currentRoll < field.compareStart(currentPlayer.getColour()).getBoardStart()) {
+                            if (!field.getBoard()[i + currentRoll].getColour().equals(currentPlayer.getColour())) {
+                                if (!barrier) {
+                                    rolls.add("" + i + "-" + (i + currentRoll));
+                                } else {
+                                    for (int j = i; j < i + currentRoll; j++) {
+                                        if (field.getBoard()[j].isBarrier()) {
+                                            b = false;
+                                        }
+                                    }
+                                    if (b) {
+                                        rolls.add("" + i + "-" + (i + currentRoll));
+                                    }
+                                }
+                            }
                         } else {
-                            break;
+                            if (!barrier) {
+                                int dest = i + currentRoll % 40 - field.compareStart(currentPlayer.getColour())
+                                        .getBoardStart();
+
+                                if (nojump) {
+
+                                }
+                            } else {
+
+                            }
                         }
                     }
                 }
                 for (int j = 0; j < 4; j++) {
-                    if (!nojump) {
-                        if (!field.getDestList().get(j).getColour().equals(currentPlayer.getColour())) {
-                            // kann dorthin moven, falls Nojump nicht aktiv
-                        }
-                    } else { // alle Dest Felder müssen überprüft werden auf dem Weg
+                    if (field.compareDest(currentPlayer.getColour()).g) {
 
                     }
                 }
+            } else { // = 4
+                if (triply) {
+                    turnCounter++;
+                    if (turnCounter < 3) {
+                        return current;
+                    } else {
+                        turn();
+                        return current;
+                    }
+                } else {
+                    turn();
+                    return current;
+                }
+            }
+        } else { // = 6
+            if (field.compareStart(currentPlayer.getColour()).getStart() > 0) {
+
+            } else { // = 0
+
             }
         }
-
-        //output += "" + asd + "-" + asdfhj;
-
-
-        if (currentRoll == 6) {
-            player = currentPlayer;
-        }
-
-
-        /*
-        Check alle möglichen Spielzüge; wenn 0, dann turn(); + return currentPlayer;
-        sonst alle möglichen Züge ausgeben
-         */
-
-        //temp = field.possibleMoves(currentRoll, currentPlayer.getColour()); // mit obigem triply zusammenfügen
-
-        if (0 == 0) {
-            turn();
-
-            // TRIPLY HERE
-
-            currentRoll = 0;
-            return currentPlayer.getColour().toString().toLowerCase();
-        }
-
-        currentPlayer = player;
-        currentRoll = 0;
-        return currentPlayer.getColour().toString().toLowerCase();
+        return rolls + "\n" + current;
     }
 
     /**
@@ -221,7 +217,7 @@ public class Game {
         }
 
         Check.checkAmount(param, 2);
-        boolean b = true;
+        boolean b;
 
         for (int j = 0; j < 2; j++) {
             if (param[j].matches("" + current.toUpperCase().charAt(0))) {
@@ -235,10 +231,9 @@ public class Game {
             }
         }
         String[] possibilities;
-        String output;
 
-        for (int m = 0; m < rolls.length; m++) {
-            possibilities = rolls[m].split("\\s");
+        for (int m = 0; m < rolls.size(); m++) {
+            possibilities = rolls.get(m).split("\\s");
 
             if (param[0].equals(possibilities[0])) {
                 if (param[1].equals(possibilities[1])) {
@@ -260,14 +255,17 @@ public class Game {
                         }
 
                     } else {
-                        field.move(field.getBoard(), Integer.parseInt(param[0]), currentRoll, // Überprüfung, ob jemand gewonnen hat!
+                        field.move(field.getBoard(), Integer.parseInt(param[0]), currentRoll, param[1],
                                 currentPlayer.getColour(), barrier, nojump);
-
-                        if (currentRoll != 6) {
-                            turn();
-                            return param[1] + "\n" + current;
+                        if (field.isWinner()) {
+                            return param[1] + "\n" + current + " winner";
                         } else {
-                            return param[1] + "\n" + current;
+                            if (currentRoll != 6) {
+                                turn();
+                                return param[1] + "\n" + current;
+                            } else {
+                                return param[1] + "\n" + current;
+                            }
                         }
                     }
                 } else {
