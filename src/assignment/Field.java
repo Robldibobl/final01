@@ -202,7 +202,6 @@ public class Field {
      * @param s      Starting position inside the destination area
      * @param roll   Rolled number
      * @param colour Current player's colour
-     * @param nojump Boolean nojump
      * @throws RuleException For game rule violations
      */
     public void moveDest(String s, int roll, Colour colour) throws RuleException {

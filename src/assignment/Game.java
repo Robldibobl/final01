@@ -1,5 +1,6 @@
 package assignment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,11 @@ public class Game {
         }
         currentRoll = 0;
         current = currentPlayer.getColour().toString().toLowerCase();
+    }
+
+    private String next() {
+        turn();
+        return current;
     }
 
     private void possMovesToDest(int i, int dest, Colour colour) {
@@ -222,6 +228,7 @@ public class Game {
         Check.checkAmount(param, 1);
         Check.checkRoll(param[0]);
         currentRoll = Integer.parseInt(param[0]);
+        rolls = new ArrayList<>();
         current = currentPlayer.getColour().toString().toLowerCase();
         Colour colour = currentPlayer.getColour();
         String output = "";
@@ -229,9 +236,8 @@ public class Game {
         if (currentRoll != 6) {
             if (field.compareStart(colour).getStart() < 4) {
                 possMoves(colour);
-                if (rolls == null) {
-                    turn();
-                    return current;
+                if (rolls.size() == 0) {
+                    return next();
                 }
             } else {
                 if (triply) {
@@ -240,44 +246,58 @@ public class Game {
                         currentRoll = 0;
                         return current;
                     } else {
-                        turn();
-                        return current;
+                        return next();
                     }
                 } else {
-                    turn();
-                    return current;
+                    return next();
                 }
             }
-        } else { // = 6
+        } else {
             if (field.compareStart(colour).getStart() > 0) {
                 if (!barrier) {
-
+                    if (!field.getBoard()[field.compareStart(colour).getBoardStart()].getColour().equals(colour)) {
+                        rolls.add("" + "S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
+                                .getBoardStart());
+                    } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + 6].getColour()
+                            .equals(colour)) {
+                        rolls.add("" + field.compareStart(colour).getBoardStart() + "-" + (field.compareStart(colour)
+                                .getBoardStart() + 6));
+                    } else if (!field.getBoard()[(field.compareStart(colour).getBoardStart() + (2 * 6) % 40)]
+                            .getColour().equals(colour)) {
+                        rolls.add("" + (field.compareStart(colour).getBoardStart() + 6) + "-" + ((field
+                                .compareStart(colour).getBoardStart() + (2 * 6)) % 40));
+                    } else if (!field.getBoard()[((field.compareStart(colour).getBoardStart() + (3 * 6)) % 40)]
+                            .getColour().equals(colour)) {
+                        rolls.add("" + ((field.compareStart(colour).getBoardStart() + (2 * 6)) % 40) + "-"
+                                + ((field.compareStart(colour).getBoardStart() + (3 * 6)) % 40));
+                    }
                 } else {
-
+                    if (!field.getBoard()[field.compareStart(colour).getBoardStart()].getColour().equals(colour)) {
+                        rolls.add("" + "S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
+                                .getBoardStart());
+                    } else {
+                        for (int k = field.compareStart(colour).getBoardStart(); k < k + currentRoll + 1; k++) {
+                            if (field.getBoard()[k].isBarrier()) {
+                                return next();
+                            }
+                        }
+                        rolls.add("" + field.compareStart(colour).getBoardStart() + "-"
+                                + (field.compareStart(colour).getBoardStart() + 6));
+                    }
                 }
-
-
-                if (!field.getBoard()[field.compareStart(colour).getBoardStart()].getColour().equals(colour)) {
-                    rolls.add("" + "S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
-                            .getBoardStart());
-
-                } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + currentRoll].getColour()
-                        .equals(colour)) {
-
-                    // barrier hier
-                } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + 2 * currentRoll].getColour()
-                        .equals(colour)) {
-
-                }
-            } else { // = 0
+            } else {
                 possMoves(colour);
-                if (rolls == null) {
-                    turn();
-                    return current;
+                if (rolls.size() == 0) {
+                    return next();
                 }
             }
         }
-        return rolls + "\n" + current;
+        for (int j = 0; j < rolls.size(); j++) {
+            output += "" + rolls.get(j) + "\n";
+        }
+
+        output = output.trim();
+        return output + "\n" + current;
     }
 
     /**
@@ -316,11 +336,7 @@ public class Game {
         boolean b;
 
         for (int j = 0; j < 2; j++) {
-            if (param[j].matches("" + current.toUpperCase().charAt(0))) {
-                b = false;
-            } else {
-                b = true;
-            }
+            b = !param[j].matches("" + current.toUpperCase().charAt(0));
             if (b) {
                 Check.checkInteger(param[j]);
                 Check.isField(Integer.parseInt(param[j]));
@@ -351,23 +367,23 @@ public class Game {
 
                     } else {
                         field.move(field.getBoard(), Integer.parseInt(param[0]), param[1], colour);
-                        if (field.isWinner()) {
+                        if (field.isWinner()) { //////////////
+                            rolls = null;
                             return param[1] + "\n" + current + " winner";
                         } else {
                             if (currentRoll != 6) {
                                 turn();
+                                rolls = null;
                                 return param[1] + "\n" + current;
                             } else {
+                                rolls = null;
                                 return param[1] + "\n" + current;
                             }
                         }
                     }
-                } else {
-                    throw new InputException("Error, wrong input format!");
                 }
             }
         }
-
         throw new InputException("Error, input does not match with possible movements on the board!");
     }
 
