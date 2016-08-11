@@ -37,47 +37,55 @@ public class Main {
                     active = true;
 
                     while (active) {
-                        String command = Terminal.readLine();
-                        String[] inputArr = command.split(" ");
-                        String[] param = new String[inputArr.length - 1];
-                        System.arraycopy(inputArr, 1, param, 0, inputArr.length - 1);
+                        try {
+                            String command = Terminal.readLine();
+                            String[] inputArr = command.split(" ");
+                            String[] param = new String[inputArr.length - 1];
+                            System.arraycopy(inputArr, 1, param, 0, inputArr.length - 1);
 
-                        switch (inputArr[0]) {
-                            case "roll":
-                                Terminal.printLine(game.roll(param));
-                                break;
+                            switch (inputArr[0]) {
+                                case "roll":
+                                    Terminal.printLine(game.roll(param));
+                                    break;
 
-                            case "rollx":
-                                Terminal.printLine(game.rollX(param));
-                                break;
+                                case "rollx":
+                                    Terminal.printLine(game.rollX(param));
+                                    break;
 
-                            case "move":
-                                Terminal.printLine(game.move(param));
-                                break;
+                                case "move":
+                                    Terminal.printLine(game.move(param));
+                                    break;
 
-                            case "print":
-                                Terminal.printLine(game.print(param));
-                                break;
+                                case "print":
+                                    Terminal.printLine(game.print(param));
+                                    break;
 
-                            case "abort":
-                                active = false;
-                                break;
+                                case "abort":
+                                    active = false;
+                                    break;
 
-                            case "quit":
-                                active = false;
-                                run = false;
-                                break;
+                                case "quit":
+                                    active = false;
+                                    run = false;
+                                    break;
 
-                            default:
-                                throw new InputException("Error, unknown command!");
-                        }
+                                default:
+                                    throw new InputException("Error, unknown command!");
+                            }
+                        } catch (InputException | RuleException e) {
+                            Terminal.printLine(e.getMessage());
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            Terminal.printError("Array Index out of Bounds Exception!");
+                        } /* catch (NullPointerException e) {
+                            Terminal.printError("Nullpointer Exception");
+                        } */
                     }
                 } else if (input.equals("quit")) {
                     run = false;
                 } else {
                     throw new InputException("Error, unknown command!1");
                 }
-            } catch (InputException | RuleException e) {
+            } catch (InputException e) {
                 Terminal.printLine(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 Terminal.printError("Array Index out of Bounds Exception!");

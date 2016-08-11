@@ -26,10 +26,6 @@ public class Game {
         currentPlayer = new Player();
     }
 
-    /*
-    optionale Spielregeln
-     */
-
     private void turn() {
         if (currentPlayer.getColour().equals(Colour.RED)) {
             currentPlayer.setColour(Colour.BLUE);
@@ -42,6 +38,132 @@ public class Game {
         }
         currentRoll = 0;
         current = currentPlayer.getColour().toString().toLowerCase();
+    }
+
+    private void possMovesToDest(int i, int dest, Colour colour) {
+        boolean d = true;
+
+        if (nojump) {
+            for (int j = 0; j < dest; j++) {
+                if (!field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
+                        .getDestination(), j).getColour().equals(Colour.EMPTY)) {
+                    d = false;
+                }
+            }
+            if (d) {
+                rolls.add(i + "-" + field.getAbcd()[dest] + current.toUpperCase().charAt(0));
+            }
+        } else {
+            if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
+                    .getDestination(), dest).getColour().equals(Colour.EMPTY)) {
+                rolls.add(i + "-" + field.getAbcd()[dest] + current.toUpperCase().charAt(0));
+            }
+        }
+    }
+
+    private void possDestMoves(Colour colour) {
+        boolean b = true;
+
+        for (int i = 0; i < 4; i++) {
+            if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour).getDestination(), i).getColour()
+                    .equals(colour)) {
+                if (i + currentRoll <= 4) {
+                    if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour).getDestination(), i)
+                            .getColour().equals(Colour.EMPTY)) {
+                        if (nojump) {
+                            for (int j = i; j < i + currentRoll; j++) {
+                                if (!field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
+                                        .getDestination(), j).getColour().equals(Colour.EMPTY)) {
+                                    b = false;
+                                }
+                            }
+                            if (b) {
+                                rolls.add(field.getAbcd()[i] + "-" + field.getAbcd()[i + currentRoll] + current
+                                        .toUpperCase().charAt(0));
+                            }
+                        } else {
+                            rolls.add(field.getAbcd()[i] + "-" + field.getAbcd()[i + currentRoll] + current
+                                    .toUpperCase().charAt(0));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void possMoves(Colour colour) {
+        for (int i = 0; i < 40; i++) {
+            boolean b = true;
+            boolean c = true;
+            if (field.getBoard()[i].getColour().equals(colour)) {
+                if (backward) {
+                    for (int h = i; h > i - currentRoll; h--) {
+                        if (h % 40 == field.compareStart(colour).getBoardStart()) {
+                            b = false;
+                        }
+                    }
+                    if (b) {
+                        if (!field.getBoard()[i - currentRoll % 40].getColour().equals(colour)
+                                && !field.getBoard()[i - currentRoll % 40].getColour().equals(Colour.EMPTY)) {
+                            if (!barrier) {
+                                rolls.add("" + i + "-" + (i - currentRoll % 40));
+                            } else {
+                                for (int j = i; j > i - currentRoll; j--) {
+                                    if (field.getBoard()[j % 40].isBarrier()) {
+                                        b = false;
+                                    }
+                                }
+                                if (b) {
+                                    rolls.add("" + i + "-" + (i - currentRoll % 40));
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int h = i; h < i + currentRoll + 1; h++) {
+                    if (h % 40 == field.compareStart(colour).getBoardStart()) {
+                        c = false;
+                    }
+                }
+                if (c) {
+                    if (!field.getBoard()[i + currentRoll % 40].getColour().equals(colour)
+                            && !field.getBoard()[i + currentRoll % 40].getColour().equals(Colour.EMPTY)) {
+                        if (!barrier) {
+                            rolls.add("" + i + "-" + (i + currentRoll % 40));
+                        } else {
+                            for (int j = i; j < i + currentRoll; j++) {
+                                if (field.getBoard()[j % 40].isBarrier()) {
+                                    c = false;
+                                }
+                            }
+                            if (c) {
+                                rolls.add("" + i + "-" + (i + currentRoll % 40));
+                            }
+                        }
+                    }
+                } else {
+                    int dest = i + currentRoll % 40 + 1 - field.compareStart(colour).getBoardStart();
+
+                    if (dest <= 4) {
+                        if (!barrier) {
+                            possMovesToDest(i, dest, colour);
+                        } else {
+                            c = true;
+
+                            for (int j = i; j < i + currentRoll - dest; j++) {
+                                if (field.getBoard()[j % 40].isBarrier()) {
+                                    c = false;
+                                }
+                            }
+                            if (c) {
+                                possMovesToDest(i, dest, colour);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        possDestMoves(colour);
     }
 
     /**
@@ -89,90 +211,33 @@ public class Game {
         return "OK";
     }
 
-    /*
-    aus Startfeld aufs Spielfeld,
-
-    nach vorn,
-
-    (nach hinten; NUR bei schlagen [backwards = true]),
-
-    (nach vorne/hinten(backwards) nicht überspringen [nojump = true])
-
-    (nicht an Spielfigur vorbei ziehen [barrier = true])
-
-    ins Zielfeld der entsprechenden Farbe
+    /**
+     * Collects all allowed movements on the board with the number rolled.
+     *
+     * @param param String array with parameters
+     * @return Returns a list of allowed movements on the board
+     * @throws InputException For input format type errors
      */
-
     public String roll(String[] param) throws InputException {
         Check.checkAmount(param, 1);
         Check.checkRoll(param[0]);
-        Player player = new Player();
-
         currentRoll = Integer.parseInt(param[0]);
         current = currentPlayer.getColour().toString().toLowerCase();
-        String output = new String();
-        boolean b = true;
+        Colour colour = currentPlayer.getColour();
+        String output = "";
 
         if (currentRoll != 6) {
-            if (field.compareStart(currentPlayer.getColour()).getStart() < 4) {
-                for (int i = 0; i < 40; i++) {
-                    if (field.getBoard()[i].getColour().equals(currentPlayer.getColour())) {
-                        if (backward) {
-                            if (i - currentRoll > field.compareStart(currentPlayer.getColour()).getBoardStart()) {
-                                if (!field.getBoard()[i - currentRoll].getColour().equals(currentPlayer.getColour())
-                                        && !field.getBoard()[i - currentRoll].getColour().equals(Colour.EMPTY)) {
-                                    if (!barrier) {
-                                        rolls.add("" + i + "-" + (i - currentRoll));
-                                    } else {
-                                        for (int j = i - currentRoll; j < i; j++) {
-                                            if (field.getBoard()[j].isBarrier()) {
-                                                b = false;
-                                            }
-                                        }
-                                        if (b) {
-                                            rolls.add("" + i + "-" + (i - currentRoll));
-                                        }
-                                    }
-                                }
-                            }
-                        } else if (i + currentRoll < field.compareStart(currentPlayer.getColour()).getBoardStart()) {
-                            if (!field.getBoard()[i + currentRoll].getColour().equals(currentPlayer.getColour())) {
-                                if (!barrier) {
-                                    rolls.add("" + i + "-" + (i + currentRoll));
-                                } else {
-                                    for (int j = i; j < i + currentRoll; j++) {
-                                        if (field.getBoard()[j].isBarrier()) {
-                                            b = false;
-                                        }
-                                    }
-                                    if (b) {
-                                        rolls.add("" + i + "-" + (i + currentRoll));
-                                    }
-                                }
-                            }
-                        } else {
-                            if (!barrier) {
-                                int dest = i + currentRoll % 40 - field.compareStart(currentPlayer.getColour())
-                                        .getBoardStart();
-
-                                if (nojump) {
-
-                                }
-                            } else {
-
-                            }
-                        }
-                    }
+            if (field.compareStart(colour).getStart() < 4) {
+                possMoves(colour);
+                if (rolls == null) {
+                    turn();
+                    return current;
                 }
-                for (int j = 0; j < 4; j++) {
-                    if (field.compareDest(currentPlayer.getColour()).g) {
-
-                    }
-                }
-            } else { // = 4
+            } else {
                 if (triply) {
                     turnCounter++;
                     if (turnCounter < 3) {
+                        currentRoll = 0;
                         return current;
                     } else {
                         turn();
@@ -184,10 +249,32 @@ public class Game {
                 }
             }
         } else { // = 6
-            if (field.compareStart(currentPlayer.getColour()).getStart() > 0) {
+            if (field.compareStart(colour).getStart() > 0) {
+                if (!barrier) {
 
+                } else {
+
+                }
+
+
+                if (!field.getBoard()[field.compareStart(colour).getBoardStart()].getColour().equals(colour)) {
+                    rolls.add("" + "S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
+                            .getBoardStart());
+
+                } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + currentRoll].getColour()
+                        .equals(colour)) {
+
+                    // barrier hier
+                } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + 2 * currentRoll].getColour()
+                        .equals(colour)) {
+
+                }
             } else { // = 0
-
+                possMoves(colour);
+                if (rolls == null) {
+                    turn();
+                    return current;
+                }
             }
         }
         return rolls + "\n" + current;
@@ -211,12 +298,21 @@ public class Game {
         return roll(result);
     }
 
+    /**
+     * Moves a token on the board
+     *
+     * @param param String array with parameters
+     * @return Returns the field where the token was moved to, if successful
+     * @throws InputException For input format type errors
+     * @throws RuleException  For game rule violations
+     */
     public String move(String[] param) throws InputException, RuleException {
         if (currentRoll == 0) {
             throw new RuleException("Error, you first have to roll a number!");
         }
 
         Check.checkAmount(param, 2);
+        Colour colour = currentPlayer.getColour();
         boolean b;
 
         for (int j = 0; j < 2; j++) {
@@ -239,14 +335,13 @@ public class Game {
                 if (param[1].equals(possibilities[1])) {
 
                     if (param[0].matches("S")) {
-                        field.moveOut(field.compareStart(currentPlayer.getColour()),
-                                field.compareStart(currentPlayer.getColour()).getBoardStart(),
-                                Integer.parseInt(param[1]), currentPlayer.getColour());
+                        field.moveOut(field.compareStart(colour),
+                                field.compareStart(colour).getBoardStart(), Integer.parseInt(param[1]), colour);
                         turn();
                         return param[1] + "\n" + current;
 
                     } else if ("ABCD".contains("" + param[0].charAt(0))) {
-                        field.moveDest("" + param[0].charAt(0), currentRoll, currentPlayer.getColour(), nojump);
+                        field.moveDest("" + param[0].charAt(0), currentRoll, colour);
                         if (currentRoll != 6) {
                             turn();
                             return param[1] + "\n" + current;
@@ -255,8 +350,7 @@ public class Game {
                         }
 
                     } else {
-                        field.move(field.getBoard(), Integer.parseInt(param[0]), currentRoll, param[1],
-                                currentPlayer.getColour(), barrier, nojump);
+                        field.move(field.getBoard(), Integer.parseInt(param[0]), param[1], colour);
                         if (field.isWinner()) {
                             return param[1] + "\n" + current + " winner";
                         } else {

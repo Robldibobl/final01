@@ -72,21 +72,6 @@ public class Check {
     }
 
     /**
-     * Checks if input is a valid roll.
-     *
-     * @param input Input
-     * @return Returns true or false
-     * @throws InputException For input format type errors
-     */
-    public static boolean isRoll(int input) throws InputException {
-        if (input < 1 || input > 6) {
-            throw new InputException("Error, please choose a number between 1 and 6!");
-        } else {
-            return true;
-        }
-    }
-
-    /**
      * Checks length of parameter array.
      *
      * @param param Input
@@ -96,14 +81,6 @@ public class Check {
     public static void checkAmount(String[] param, int n) throws InputException {
         if (param.length != n) {
             throw new InputException("Error, wrong input format!");
-        }
-    }
-
-    public static boolean checkTurn(int start) {
-        if (start == 4) {
-            return false;
-        } else {
-            return true;
         }
     }
 
