@@ -46,6 +46,37 @@ public class Game {
         return current;
     }
 
+    private void possMovesBack(int i, Colour colour, boolean barrier) {
+        boolean b = true;
+
+        for (int h = i; h > i - currentRoll; h--) {
+            if (h % 40 == field.compareStart(colour).getBoardStart()) {
+                b = false;
+            }
+        }
+        if (b) {
+            if (!field.getBoard()[i - currentRoll % 40].getColour().equals(colour)
+                    && !field.getBoard()[i - currentRoll % 40].getColour().equals(Colour.EMPTY)) {
+                if (!barrier) {
+                    rolls.add("" + i + "-" + (i - currentRoll % 40));
+                } else {
+                    for (int j = i - 1; j > i - currentRoll; j--) {
+                        if (field.getBoard()[j % 40].isBarrier()) {
+                            b = false;
+                        }
+                    }
+                    if (field.getBoard()[i].isBarrier() && !field.getBoard()[((i - currentRoll) % 40)]
+                            .getColour().equals(colour) && !field.getBoard()[((i - currentRoll) % 40)]
+                            .getColour().equals(Colour.EMPTY)) {
+                        if (b) {
+                            rolls.add("" + i + "-" + (i - currentRoll % 40));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void checkPossMovesToDest(int i, int dest, Colour colour, boolean barrier) {
         if (!barrier) {
             possMovesToDest(i, dest, colour);
@@ -115,32 +146,7 @@ public class Game {
             boolean c = true;
             if (field.getBoard()[i].getColour().equals(colour)) {
                 if (backward) {
-                    for (int h = i; h > i - currentRoll; h--) {
-                        if (h % 40 == field.compareStart(colour).getBoardStart()) {
-                            b = false;
-                        }
-                    }
-                    if (b) {
-                        if (!field.getBoard()[i - currentRoll % 40].getColour().equals(colour)
-                                && !field.getBoard()[i - currentRoll % 40].getColour().equals(Colour.EMPTY)) {
-                            if (!barrier) {
-                                rolls.add("" + i + "-" + (i - currentRoll % 40));
-                            } else {
-                                for (int j = i - 1; j > i - currentRoll; j--) {
-                                    if (field.getBoard()[j % 40].isBarrier()) {
-                                        b = false;
-                                    }
-                                }
-                                if (field.getBoard()[i].isBarrier() && !field
-                                        .getBoard()[((i - currentRoll) % 40)].getColour().equals(colour) && !field
-                                        .getBoard()[((i - currentRoll) % 40)].getColour().equals(Colour.EMPTY)) {
-                                    if (b) {
-                                        rolls.add("" + i + "-" + (i - currentRoll % 40));
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    possMovesBack(i, colour, barrier);
                 }
                 for (int h = i + 1; h <= i + currentRoll; h++) {
                     if (h % 40 == field.compareStart(colour).getBoardStart()) {
@@ -421,6 +427,6 @@ public class Game {
     public String print(String[] param) throws InputException {
         Check.checkAmount(param, 0);
 
-        return field.getPrint(barrier) + "\n" + currentPlayer.getColour().toString().toLowerCase();
+        return field.getPrint() + "\n" + currentPlayer.getColour().toString().toLowerCase();
     }
 }

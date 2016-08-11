@@ -143,10 +143,11 @@ public class Field {
     /**
      * Method to move tokens on the board and check if a player has won.
      *
-     * @param board  Board
-     * @param i      Position of the token before being moved
-     * @param param  String with second input
-     * @param colour Player colour
+     * @param board   Board
+     * @param i       Position of the token before being moved
+     * @param param   String with second input
+     * @param colour  Player colour
+     * @param barrier Boolean barrier
      * @throws RuleException  For game rule violations
      * @throws InputException For input format type errors
      */
@@ -316,7 +317,7 @@ public class Field {
      *
      * @return Returns all tokens' positions in the game
      */
-    public String getPrint(boolean barrier) {
+    public String getPrint() {
         String[] output = new String[4];
         String result = "";
 
@@ -366,7 +367,6 @@ public class Field {
             }
         }
 
-
         for (int i = 0; i < 4; i++) {
             if (red.getDestination()[i].getColour().equals(Colour.RED)) {
 
@@ -395,7 +395,6 @@ public class Field {
             result += "" + output[i] + "\n";
         }
         result = result.trim();
-
         return result;
     }
 
