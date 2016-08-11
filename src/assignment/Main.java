@@ -74,23 +74,15 @@ public class Main {
                             }
                         } catch (InputException | RuleException e) {
                             Terminal.printLine(e.getMessage());
-                        } catch (ArrayIndexOutOfBoundsException e) {
-                            Terminal.printError("Array Index out of Bounds Exception!");
-                        } catch (NullPointerException e) {
-                            Terminal.printError("Nullpointer Exception");
                         }
                     }
                 } else if (input.equals("quit")) {
                     run = false;
                 } else {
-                    throw new InputException("Error, unknown command!1");
+                    throw new InputException("Error, unknown command!");
                 }
             } catch (InputException e) {
                 Terminal.printLine(e.getMessage());
-            } catch (ArrayIndexOutOfBoundsException e) {
-                Terminal.printError("Array Index out of Bounds Exception!");
-            } catch (NullPointerException e) {
-                Terminal.printError("Nullpointer Exception");
             }
         }
     }

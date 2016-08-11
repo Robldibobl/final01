@@ -150,9 +150,9 @@ public class Field {
      * @throws RuleException  For game rule violations
      * @throws InputException For input format type errors
      */
-    public void move(Token[] board, int i, String param, Colour colour)
+    public void move(Token[] board, int i, String param, Colour colour, boolean barrier)
             throws RuleException, InputException {
-        setToken(board, i, param, colour);
+        setToken(board, i, param, colour, barrier);
 
         for (int k = 0; k < 4; k++) {
             if (compareDest(colour).getDestination()[k].getColour().equals(Colour.EMPTY)) {
@@ -163,15 +163,26 @@ public class Field {
         winner = true;
     }
 
-    private void setToken(Token[] board, int i, String param, Colour colour)
+    private void setToken(Token[] board, int i, String param, Colour colour, boolean barrier)
             throws RuleException, InputException {
 
         if (Check.isInteger(param)) {
             int j = Integer.parseInt(param);
             if (!board[j].getColour().equals(Colour.EMPTY)) {
-                compareStart(board[j].getColour()).setStart(compareStart(board[j].getColour()).getStart() + 1);
-                board[j].setColour(colour);
-                board[i].setColour(Colour.EMPTY);
+                if (!barrier) {
+                    compareStart(board[j].getColour()).setStart(compareStart(board[j].getColour()).getStart() + 1);
+                    board[j].setColour(colour);
+                    board[i].setColour(Colour.EMPTY);
+                } else {
+                    if (board[j].getColour().equals(colour)) {
+                        board[j].setBarrier(true);
+                        board[i].setColour(Colour.EMPTY);
+                    } else {
+                        compareStart(board[j].getColour()).setStart(compareStart(board[j].getColour()).getStart() + 1);
+                        board[j].setColour(colour);
+                        board[i].setColour(Colour.EMPTY);
+                    }
+                }
             } else {
                 board[j].setColour(colour);
                 board[i].setColour(Colour.EMPTY);
@@ -305,7 +316,7 @@ public class Field {
      *
      * @return Returns all tokens' positions in the game
      */
-    public String getPrint() {
+    public String getPrint(boolean barrier) {
         String[] output = new String[4];
         String result = "";
 
@@ -330,18 +341,31 @@ public class Field {
 
         for (int i = 0; i < 40; i++) {
             if (board[i].getColour().equals(Colour.RED)) {
-                output[0] += "" + i + ",";
+                if (board[i].isBarrier()) {
+                    output[0] += i + ",";
+                }
+                output[0] += i + ",";
             }
             if (board[i].getColour().equals(Colour.BLUE)) {
-                output[1] += "" + i + ",";
+                if (board[i].isBarrier()) {
+                    output[1] += i + ",";
+                }
+                output[1] += i + ",";
             }
             if (board[i].getColour().equals(Colour.GREEN)) {
-                output[2] += "" + i + ",";
+                if (board[i].isBarrier()) {
+                    output[2] += i + ",";
+                }
+                output[2] += i + ",";
             }
             if (board[i].getColour().equals(Colour.YELLOW)) {
-                output[3] += "" + i + ",";
+                if (board[i].isBarrier()) {
+                    output[3] += i + ",";
+                }
+                output[3] += i + ",";
             }
         }
+
 
         for (int i = 0; i < 4; i++) {
             if (red.getDestination()[i].getColour().equals(Colour.RED)) {
