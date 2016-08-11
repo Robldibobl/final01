@@ -76,9 +76,9 @@ public class Main {
                             Terminal.printLine(e.getMessage());
                         } catch (ArrayIndexOutOfBoundsException e) {
                             Terminal.printError("Array Index out of Bounds Exception!");
-                        } /* catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             Terminal.printError("Nullpointer Exception");
-                        } */
+                        }
                     }
                 } else if (input.equals("quit")) {
                     run = false;
@@ -89,9 +89,18 @@ public class Main {
                 Terminal.printLine(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 Terminal.printError("Array Index out of Bounds Exception!");
-            } /* catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 Terminal.printError("Nullpointer Exception");
-            } */
+            }
         }
+    }
+
+    /**
+     * Setter for the boolean active.
+     *
+     * @param active Boolean that determines whether or not a game is active
+     */
+    public static void setActive(boolean active) {
+        Main.active = active;
     }
 }

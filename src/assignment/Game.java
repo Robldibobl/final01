@@ -51,8 +51,7 @@ public class Game {
 
         if (nojump) {
             for (int j = 0; j < dest; j++) {
-                if (!field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
-                        .getDestination(), j).getColour().equals(Colour.EMPTY)) {
+                if (!field.compareDest(colour).getDestination()[j].getColour().equals(Colour.EMPTY)) {
                     d = false;
                 }
             }
@@ -60,8 +59,7 @@ public class Game {
                 rolls.add(i + "-" + field.getAbcd()[dest] + current.toUpperCase().charAt(0));
             }
         } else {
-            if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
-                    .getDestination(), dest).getColour().equals(Colour.EMPTY)) {
+            if (field.compareDest(colour).getDestination()[dest].getColour().equals(Colour.EMPTY)) {
                 rolls.add(i + "-" + field.getAbcd()[dest] + current.toUpperCase().charAt(0));
             }
         }
@@ -71,25 +69,22 @@ public class Game {
         boolean b = true;
 
         for (int i = 0; i < 4; i++) {
-            if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour).getDestination(), i).getColour()
-                    .equals(colour)) {
-                if (i + currentRoll <= 4) {
-                    if (field.compareDest(colour).getDestinationIndex(field.compareDest(colour).getDestination(), i)
-                            .getColour().equals(Colour.EMPTY)) {
+            if (field.compareDest(colour).getDestination()[i].getColour().equals(colour)) {
+                if (i + currentRoll < 4) {
+                    if (field.compareDest(colour).getDestination()[i + currentRoll].getColour().equals(Colour.EMPTY)) {
                         if (nojump) {
                             for (int j = i; j < i + currentRoll; j++) {
-                                if (!field.compareDest(colour).getDestinationIndex(field.compareDest(colour)
-                                        .getDestination(), j).getColour().equals(Colour.EMPTY)) {
+                                if (!field.compareDest(colour).getDestination()[j].getColour().equals(Colour.EMPTY)) {
                                     b = false;
                                 }
                             }
                             if (b) {
-                                rolls.add(field.getAbcd()[i] + "-" + field.getAbcd()[i + currentRoll] + current
-                                        .toUpperCase().charAt(0));
+                                rolls.add(field.getAbcd()[i] + current.toUpperCase().charAt(0) + "-"
+                                        + field.getAbcd()[i + currentRoll] + current.toUpperCase().charAt(0));
                             }
                         } else {
-                            rolls.add(field.getAbcd()[i] + "-" + field.getAbcd()[i + currentRoll] + current
-                                    .toUpperCase().charAt(0));
+                            rolls.add(field.getAbcd()[i] + current.toUpperCase().charAt(0) + "-"
+                                    + field.getAbcd()[i + currentRoll] + current.toUpperCase().charAt(0));
                         }
                     }
                 }
@@ -126,14 +121,14 @@ public class Game {
                         }
                     }
                 }
-                for (int h = i; h < i + currentRoll + 1; h++) {
+                for (int h = i + 1; h <= i + currentRoll; h++) {
                     if (h % 40 == field.compareStart(colour).getBoardStart()) {
                         c = false;
+                        break;
                     }
                 }
                 if (c) {
-                    if (!field.getBoard()[i + currentRoll % 40].getColour().equals(colour)
-                            && !field.getBoard()[i + currentRoll % 40].getColour().equals(Colour.EMPTY)) {
+                    if (!field.getBoard()[i + currentRoll % 40].getColour().equals(colour)) {
                         if (!barrier) {
                             rolls.add("" + i + "-" + (i + currentRoll % 40));
                         } else {
@@ -148,7 +143,7 @@ public class Game {
                         }
                     }
                 } else {
-                    int dest = i + currentRoll % 40 + 1 - field.compareStart(colour).getBoardStart();
+                    int dest = ((i + currentRoll) % 40) - field.compareStart(colour).getBoardStart();
 
                     if (dest <= 4) {
                         if (!barrier) {
@@ -256,19 +251,19 @@ public class Game {
             if (field.compareStart(colour).getStart() > 0) {
                 if (!barrier) {
                     if (!field.getBoard()[field.compareStart(colour).getBoardStart()].getColour().equals(colour)) {
-                        rolls.add("" + "S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
+                        rolls.add("S" + current.toUpperCase().charAt(0) + "-" + field.compareStart(colour)
                                 .getBoardStart());
                     } else if (!field.getBoard()[field.compareStart(colour).getBoardStart() + 6].getColour()
                             .equals(colour)) {
-                        rolls.add("" + field.compareStart(colour).getBoardStart() + "-" + (field.compareStart(colour)
+                        rolls.add(field.compareStart(colour).getBoardStart() + "-" + (field.compareStart(colour)
                                 .getBoardStart() + 6));
                     } else if (!field.getBoard()[(field.compareStart(colour).getBoardStart() + (2 * 6) % 40)]
                             .getColour().equals(colour)) {
-                        rolls.add("" + (field.compareStart(colour).getBoardStart() + 6) + "-" + ((field
+                        rolls.add((field.compareStart(colour).getBoardStart() + 6) + "-" + ((field
                                 .compareStart(colour).getBoardStart() + (2 * 6)) % 40));
                     } else if (!field.getBoard()[((field.compareStart(colour).getBoardStart() + (3 * 6)) % 40)]
                             .getColour().equals(colour)) {
-                        rolls.add("" + ((field.compareStart(colour).getBoardStart() + (2 * 6)) % 40) + "-"
+                        rolls.add(((field.compareStart(colour).getBoardStart() + (2 * 6)) % 40) + "-"
                                 + ((field.compareStart(colour).getBoardStart() + (3 * 6)) % 40));
                     }
                 } else {
@@ -336,7 +331,7 @@ public class Game {
         boolean b;
 
         for (int j = 0; j < 2; j++) {
-            b = !param[j].matches("" + current.toUpperCase().charAt(0));
+            b = !param[j].contains("" + current.toUpperCase().charAt(0));
             if (b) {
                 Check.checkInteger(param[j]);
                 Check.isField(Integer.parseInt(param[j]));
@@ -345,14 +340,14 @@ public class Game {
         String[] possibilities;
 
         for (int m = 0; m < rolls.size(); m++) {
-            possibilities = rolls.get(m).split("\\s");
+            possibilities = rolls.get(m).split("\\W");
 
             if (param[0].equals(possibilities[0])) {
                 if (param[1].equals(possibilities[1])) {
 
-                    if (param[0].matches("S")) {
-                        field.moveOut(field.compareStart(colour),
-                                field.compareStart(colour).getBoardStart(), Integer.parseInt(param[1]), colour);
+                    if (param[0].contains("S")) {
+                        field.moveOut(field.compareStart(colour), field.compareStart(colour).getBoardStart(),
+                                Integer.parseInt(param[1]), colour);
                         turn();
                         return param[1] + "\n" + current;
 
@@ -367,16 +362,17 @@ public class Game {
 
                     } else {
                         field.move(field.getBoard(), Integer.parseInt(param[0]), param[1], colour);
-                        if (field.isWinner()) { //////////////
-                            rolls = null;
+                        if (field.isWinner()) {
+                            rolls = new ArrayList<>();
+                            Main.setActive(false);
                             return param[1] + "\n" + current + " winner";
                         } else {
                             if (currentRoll != 6) {
                                 turn();
-                                rolls = null;
+                                rolls = new ArrayList<>();
                                 return param[1] + "\n" + current;
                             } else {
-                                rolls = null;
+                                rolls = new ArrayList<>();
                                 return param[1] + "\n" + current;
                             }
                         }

@@ -155,9 +155,9 @@ public class Field {
         setToken(board, i, param, colour);
 
         for (int k = 0; k < 4; k++) {
-            if (!compareDest(colour).getDestinationIndex(compareDest(colour).getDestination(), k)
-                    .getColour().equals(colour)) {
+            if (compareDest(colour).getDestination()[k].getColour().equals(Colour.EMPTY)) {
                 winner = false;
+                return;
             }
         }
         winner = true;
@@ -172,11 +172,14 @@ public class Field {
                 compareStart(board[j].getColour()).setStart(compareStart(board[j].getColour()).getStart() + 1);
                 board[j].setColour(colour);
                 board[i].setColour(Colour.EMPTY);
+            } else {
+                board[j].setColour(colour);
+                board[i].setColour(Colour.EMPTY);
             }
         } else {
             for (int k = 0; k < 4; k++) {
                 if (("" + param.charAt(0)).equals(abcd[k])) {
-                    compareDest(colour).getDestinationIndex(compareDest(colour).getDestination(), k).setColour(colour);
+                    compareDest(colour).getDestination()[k].setColour(colour);
                     board[i].setColour(Colour.EMPTY);
                 }
             }
@@ -341,19 +344,19 @@ public class Field {
         }
 
         for (int i = 0; i < 4; i++) {
-            if (red.getDestinationIndex(red.getDestination(), i).getColour().equals(Colour.RED)) {
+            if (red.getDestination()[i].getColour().equals(Colour.RED)) {
 
                 output[0] += "" + abcd[i] + "R" + ",";
             }
-            if (blue.getDestinationIndex(blue.getDestination(), i).getColour().equals(Colour.BLUE)) {
+            if (blue.getDestination()[i].getColour().equals(Colour.BLUE)) {
 
                 output[1] += "" + abcd[i] + "B" + ",";
             }
-            if (green.getDestinationIndex(green.getDestination(), i).getColour().equals(Colour.GREEN)) {
+            if (green.getDestination()[i].getColour().equals(Colour.GREEN)) {
 
                 output[2] += "" + abcd[i] + "G" + ",";
             }
-            if (yellow.getDestinationIndex(yellow.getDestination(), i).getColour().equals(Colour.YELLOW)) {
+            if (yellow.getDestination()[i].getColour().equals(Colour.YELLOW)) {
 
                 output[3] += "" + abcd[i] + "Y" + ",";
             }

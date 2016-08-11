@@ -44,17 +44,6 @@ public class Dest {
     }
 
     /**
-     * Getter for an entry at index i in a destination area.
-     *
-     * @param destination Destination area
-     * @param i           Index i in a destination area
-     * @return Returns the specific entry
-     */
-    public Token getDestinationIndex(Token[] destination, int i) {
-        return destination[i];
-    }
-
-    /**
      * Setter for the colour of an entry in a destination area.
      *
      * @param destination Destination area
